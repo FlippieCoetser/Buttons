@@ -3,12 +3,18 @@ const path = require("path");
 module.exports = function(config) {
     config.set({
         frameworks: ["jasmine"],
+        proxies: {
+            '/node_modules/': '/base/node_modules/'
+        },
         files: [
+            { pattern: "importmap.js"},
+            { pattern: "./node_modules/@browser-modules/dictionary/lib/**/*.js", type: "module" },
+            { pattern: "./node_modules/@browser-modules/web.component/lib/**/*.js", type: "module"},
             { pattern: "./src/**/*.js", type: "module" },
             { pattern: "./test/**/*.js", type: "module" }
         ],
         preprocessors: {
-            "src/**/!(*.test).js": ["karma-coverage-istanbul-instrumenter"]
+            "src/!(*.test).js": ["karma-coverage-istanbul-instrumenter"]
         },
         reporters: ["spec", "coverage-istanbul"],
         coverageIstanbulInstrumenter: {

@@ -1,12 +1,17 @@
 module.exports = function(wallaby) {
     return {
         files: [
-            "src/**/*.ts"
+            "importmap.js",
+            "src/**/*.ts",
+            "node_modules/@browser-modules/dictionary/lib/**/*.js",
+            "node_modules/@browser-modules/web.component/lib/**/*.js",
         ],
         tests: [
             "test/*.ts"
         ],
-        trace: true,  
+        filesWithNoCoverageCalculated: [
+            'node_modules/@browser-modules/dictionary/lib/dictionary.js'
+        ], 
         compilers: {
             '**/*.ts': wallaby.compilers.typeScript({
                 "module": "es2020",
