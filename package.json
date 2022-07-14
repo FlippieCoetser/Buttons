@@ -49,6 +49,6 @@
   },
   "dependencies": {
     "@browser-modules/dictionary": "^1.0.8",
-    "@browser-modules/web.component": "^1.0.6"
+    "@browser-modules/web.component": "^1.0.7"
   }
 }
