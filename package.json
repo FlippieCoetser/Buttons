@@ -1,9 +1,10 @@
 {
-  "name": "@browser-modules/events",
-  "version": "1.0.5",
-  "description": "Typescript Events complied to ES6 modules",
-  "browser": "lib/events.js",
-  "main": "lib/events.js",
+  "name": "@browser-modules/buttons",
+  "version": "1.0.1",
+  "description": "Button Web Component using ES6 modules",
+  "browser": "lib/button.pin.js",
+  "main": "lib/button.pin.js",
+  "types": "lib/button.pin.d.ts",
   "files": [
     "lib/",
     "tasks/"
@@ -49,6 +50,6 @@
   },
   "dependencies": {
     "@browser-modules/dictionary": "^1.0.8",
-    "@browser-modules/web.component": "^1.0.7"
+    "@browser-modules/web.component": "^1.0.9"
   }
 }
