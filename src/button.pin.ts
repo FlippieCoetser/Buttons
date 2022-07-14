@@ -31,22 +31,6 @@ export enum State {
     OFF = 'off'
 }
 
-/**
-* @category Configuration
-*/
-export enum Event {
-    ONON = 'onon',
-    ONOFF = 'onoff'
-}
-
-/**
-* @category Configuration
-*/
-export enum Operation {
-    ON = 'on',
-    OFF = 'off',
-    TOGGLE = 'toggle'
-}
 
 /**  
 * @category Component
@@ -74,18 +58,18 @@ export class Pin extends Component {
     * @readonly
     * @category Attributes
     */
-    public get [Attribute.TEMPLATE]() {
-        return this.getAttribute(Attribute.TEMPLATE) ?? Pin.tag;
+    public get templateId() {
+        return this.getAttribute('templateIt') ?? Pin.tag;
     }
     
     /**
     * No API Operation available to set visibility.  
     * @category Attributes
     */
-    public get [Attribute.VISIBLE](): Visible {
+    public get visible(): Visible {
         return <Visible>this.getAttribute(Attribute.VISIBLE) ?? this._visible;
     }
-    public set [Attribute.VISIBLE](visible: Visible) {
+    public set visible(visible: Visible) {
         this._visible = visible;
         visible == Visible.YES && this.removeAttribute(Attribute.VISIBLE);
         visible == Visible.NO && this.setAttribute(Attribute.VISIBLE, visible);
@@ -95,12 +79,12 @@ export class Pin extends Component {
     * Takes any value of the State enumeration related to the specific button type
     * @category Attributes
     */
-    public get [Attribute.STATE](): State { 
-        return <State><unknown>this.getAttribute(Attribute.STATE) ?? this._state;
+    public get state(): State { 
+        return <State><unknown>this.getAttribute('state') ?? this._state;
     }
-    public set [Attribute.STATE](state: State) {
+    public set state(state: State) {
         this._state = state;
-        this.setAttribute(Attribute.STATE, <string><unknown>state);
+        this.setAttribute('state', <string><unknown>state);
     }
 
     /**
@@ -108,8 +92,8 @@ export class Pin extends Component {
     * @event
     * @category Events 
     */
-    public set [Event.ONON](handler) {
-        this.addEventListener(Event.ONON,handler);
+    public set onon(handler) {
+        this.addEventListener('onon',handler);
     }
     
     /**
@@ -117,38 +101,38 @@ export class Pin extends Component {
     * @event
     * @category Events
     */
-    public set [Event.ONOFF](handler) {
-        this.addEventListener(Event.ONOFF,handler);
+    public set onoff(handler) {
+        this.addEventListener('onoff',handler);
     }
 
     /**
     * @category Operations
     */
-    public [Operation.ON] = (): void => { 
-        this[Attribute.STATE] = State.ON
-        this.dispatchEvent(new CustomEvent(Event.ONON));
+    public on = (): void => { 
+        this.state = State.ON
+        this.dispatchEvent(new CustomEvent('onon'));
     }
 
     /**
     * @category Operations
     */
-    public [Operation.OFF] = (): void => { 
-        this[Attribute.STATE] = State.OFF
-        this.dispatchEvent(new CustomEvent(Event.ONOFF));
+    public off = (): void => { 
+        this.state = State.OFF
+        this.dispatchEvent(new CustomEvent('onoff'));
     }
     
     /**
     * @category Operations
     */
-    public [Operation.TOGGLE] = (): void => 
-        this[Attribute.STATE] == State.ON ? this[Operation.OFF]() : this[Operation.ON]();
+    public toggle = (): void => 
+        this.state == State.ON ? this.off() : this.on();
 }
 
 let configuration = {
     gestures:[
         {
             event: Gesture.CLICK,
-            operation: Operation.TOGGLE
+            operation: 'toggle'
         }
     ]
 }
