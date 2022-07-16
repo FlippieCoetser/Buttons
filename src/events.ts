@@ -1,3 +1,7 @@
+/**
+* @module Events
+*/
+
 import { Dictionary } from "@browser-modules/dictionary";
 
 export interface Listener {
