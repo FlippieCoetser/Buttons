@@ -2,7 +2,7 @@
 * @module Pin
 */
 
-import { Component, Gesture } from "../node_modules/@browser-modules/web.component/lib/component.js";
+import { Component, Gesture } from "@browser-modules/web.component";
 
 /**
  * HTML Attributes available to set
