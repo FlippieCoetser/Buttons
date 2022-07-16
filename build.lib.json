@@ -4,11 +4,12 @@
         "module": "es2020",
         "target": "es2020",
         "declaration": true,
+        "moduleResolution": "node",
         "rootDir": "./src",
         "outDir": "./lib/",
         "paths": {
             "@browser-modules/dictionary": ["./node_modules/@browser-modules/dictionary/lib/dictionary.js"],
-            "@browser-modules/web.component": ["./node_modules/@browser-modules/web.component/lib/component.js"]
+            "@browser-modules/web.component": ["./node_modules/@browser-modules/web.component"]
         }
     },
     "include": [
