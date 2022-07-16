@@ -17,6 +17,7 @@
         "./test/**/*"
     ],
     "typedocOptions" :{
+        "entryPoints":["./src/events.ts","./src/button.pin.ts"],
         "excludePrivate": true,
         "excludeProtected": true,
         "disableSources": true,
