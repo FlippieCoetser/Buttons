@@ -3,7 +3,7 @@
         "**/.github": true,
         "**/.nyc_output": true,
         "**/docs": true,
-        "**/node_modules": false,
+        "**/node_modules": true,
         "**/coverage": true,
         "**/tasks": false,
         "**/screenshots": true,
