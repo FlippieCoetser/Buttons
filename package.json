@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "@browser-modules/dictionary": "^1.0.8",
+    "@browser-modules/events": "^1.1.1",
     "@browser-modules/web.component": "^1.0.9"
   }
 }

@@ -1,66 +1,25 @@
 /**
 * @module Pin
 */
+import {
+    Attribute,
+    States,
+    Visible,
+    State,
+    Event,
+    Operation
+} from "./button.pin.metadata.js"
 
 import { Component } from "@browser-modules/web.component";
+import { Machine } from "./machine.js"
 
-/**
- * HTML Attributes available to set
- * @category Metadata: Attributes
- */
-export enum Attribute {
-    TEMPLATE = 'templateId',
-    VISIBLE = 'visible',
-    STATE = 'state'
-}
-
-/**
- * Attribute only visible when set to NO
- * @category Metadata: State
- */
-export enum Visible {
-    NO = 'no',
-    YES = 'yes'
-}
-
-/**
-* @category Metadata: State
-*/
-export enum State {
-    ON = 'on',
-    OFF = 'off'
-}
-
-/**
-* @category Metadata: Behavior
-*/
-export enum Event {
-    ONON = 'onon', 
-    ONOFF = 'onoff'
-}
-
-/**
-* @category Metadata: Behavior
-*/
-export enum Operation {
-    ON = 'on', 
-    OFF = 'off', 
-    TOGGLE = 'toggle'
-}
-
-/**
-* @category Metadata: Behavior
-*/
-export enum Gesture {
-    CLICK = 'click'
-}
+import { Configuration } from "./button.pin.config.js"
 
 /**
 * Event handler signature
 * @category Interfaces
 */
 export type Handler = (...args: any[]) => void
-
 
 /**  
 * @category Component
@@ -75,7 +34,8 @@ export class Pin extends Component {
     * Contains the bindings of UI Gestures to web component operations
     * @hidden
     */
-    public configuration = configuration
+    public configuration = Configuration
+    public machine
     
     /**
     * default state component
@@ -88,6 +48,34 @@ export class Pin extends Component {
     */
     constructor() {
         super()
+        this.machine = new Machine<
+            Attribute,
+            States,
+            Event>(Configuration)
+
+        this._registerEvents()
+    }
+
+    private _trigger = (event: Event) => 
+        this.dispatchEvent(new CustomEvent(event))
+
+    private _registerEvents = () => { 
+        this.machine.on(Event.ONHIDE,(state) => {
+            this.visible = state
+            this._trigger(Event.ONHIDE)
+        })
+        this.machine.on(Event.ONSHOW,(state) => {
+            this.visible = state
+            this._trigger(Event.ONSHOW)
+        })
+        this.machine.on(Event.ONON, (state) => {
+            this.state = state
+            this._trigger(Event.ONON)
+        })
+        this.machine.on(Event.ONOFF, (state) => {
+            this.state = state
+            this._trigger(Event.ONOFF)
+        })
     }
 
     /**
@@ -145,34 +133,30 @@ export class Pin extends Component {
     /**
     * @category Operations
     */
-    public [Operation.ON] = (): void => { 
-        this.state = State.ON
-        this.dispatchEvent(new CustomEvent(Event.ONON));
-    }
+    public [Operation.HIDE] = (): void => 
+        this.machine.trigger(Event.ONHIDE)
 
     /**
     * @category Operations
     */
-    public [Operation.OFF] = (): void => { 
-        this.state = State.OFF
-        this.dispatchEvent(new CustomEvent(Event.ONOFF));
-    }
+    public [Operation.SHOW] = (): void => 
+        this.machine.trigger(Event.ONSHOW)
+
+    /**
+    * @category Operations
+    */
+    public [Operation.ON] = (): void => 
+        this.machine.trigger(Event.ONON)
+
+    /**
+    * @category Operations
+    */
+    public [Operation.OFF] = (): void => 
+        this.machine.trigger(Event.ONOFF)
     
     /**
     * @category Operations
     */
-    public [Operation.TOGGLE] = (): void => 
-        this.state === State.ON ? this[Operation.OFF]() : this[Operation.ON]();
-}
-
-/**
-* @hidden
-*/
-let configuration = {
-    gestures:[
-        {
-            event: Gesture.CLICK,
-            operation: Operation.TOGGLE
-        }
-    ]
+    public [Operation.TOGGLE] = (): void =>
+        this.machine.trigger(Event.ONTOGGLE)
 }

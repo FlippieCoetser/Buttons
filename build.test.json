@@ -6,18 +6,14 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "inlineSources": true,
-        "baseUrl": ".",
-        "paths": {
-            "@browser-modules/dictionary": ["./node_modules/@browser-modules/dictionary/lib/dictionary.js"],
-            "@browser-modules/web.component": ["./node_modules/@browser-modules/web.component"]
-        }
+        "baseUrl": "."
     },
     "include": [
         "./src/**/*",
         "./test/**/*"
     ],
     "typedocOptions" :{
-        "entryPoints":["./src/events.ts","./src/button.pin.ts"],
+        "entryPoints":["./src/button.pin.ts"],
         "excludePrivate": true,
         "excludeProtected": true,
         "disableSources": true,

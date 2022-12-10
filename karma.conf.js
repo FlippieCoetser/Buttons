@@ -9,6 +9,7 @@ module.exports = function(config) {
         files: [
             { pattern: "importmap.js"},
             { pattern: "./node_modules/@browser-modules/dictionary/lib/**/*.js", type: "module" },
+            { pattern: "./node_modules/@browser-modules/events/lib/**/*.js", type: "module"},
             { pattern: "./node_modules/@browser-modules/web.component/lib/**/*.js", type: "module"},
             { pattern: "./src/**/*.js", type: "module" },
             { pattern: "./test/**/*.js", type: "module" }

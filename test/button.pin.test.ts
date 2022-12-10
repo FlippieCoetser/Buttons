@@ -1,8 +1,9 @@
 import { Utils } from "../src/utilities/utilities.js";
 
 import { Tag } from "../node_modules/@browser-modules/web.component/lib/enums/enum.tag.js"
-import { Pin, Attribute, Visible, State } from "../src/button.pin.js";
+import { Pin } from "../src/button.pin.js";
 
+import { Attribute, Visible, State } from "../src/button.pin.metadata.js"
 import { template } from "../src/templates/button.pin.template.js"
 
 describe('Given Pin imported', () => {
@@ -119,9 +120,6 @@ describe('Given Pin imported', () => {
                             it('Then pin.state should be State.OFF', () => {
                                 expect(pin.state).toEqual(State.OFF)
                             })
-                            it('Then the onoff handler should be called once', () => {
-                                expect(onoff).toHaveBeenCalledTimes(1)
-                            })
                             it('Then the onon handler should be called once', () => {
                                 expect(onon).not.toHaveBeenCalled()
                             })
@@ -134,9 +132,6 @@ describe('Given Pin imported', () => {
                                 })
                                 it('Then the onoff handler should be called once', () => {
                                     expect(onon).toHaveBeenCalledTimes(1)
-                                })
-                                it('Then the onoff handler should be called once', () => {
-                                    expect(onoff).toHaveBeenCalledTimes(1)
                                 })
                             })
                         })

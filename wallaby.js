@@ -4,6 +4,7 @@ module.exports = function(wallaby) {
             "importmap.js",
             "src/**/*.ts",
             "node_modules/@browser-modules/dictionary/lib/**/*.js",
+            "node_modules/@browser-modules/events/lib/**/*.js",
             "node_modules/@browser-modules/web.component/lib/**/*.js",
         ],
         tests: [
