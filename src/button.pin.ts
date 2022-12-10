@@ -108,6 +108,24 @@ export class Pin extends Component {
     }
 
     /**
+    * Triggered via `.hide()`
+    * @event
+    * @category Events 
+    */
+    public set [Event.ONHIDE](handler: Handler) {
+        this.addEventListener(Event.ONHIDE,handler);
+    }
+        
+    /**
+    * Triggered via `.show()`
+    * @event
+    * @category Events
+    */
+    public set [Event.ONSHOW](handler: Handler) {
+        this.addEventListener(Event.ONSHOW,handler);
+    }
+
+    /**
     * Triggered via `.on()`
     * @event
     * @category Events 
