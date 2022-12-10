@@ -12,7 +12,7 @@ import {
     State,
     Event,
     Operation 
-} from "./button.pin.config.js"
+} from "./button.config.js"
 
 /**
 * Event handler signature
@@ -47,11 +47,7 @@ export class Pin extends Component {
     */
     constructor() {
         super()
-        this.machine = new Machine<
-            Attribute,
-            States,
-            Event>(Configuration)
-
+        this.machine = new Machine<Attribute, States, Event>(Configuration)
         this._registerEvents()
     }
 

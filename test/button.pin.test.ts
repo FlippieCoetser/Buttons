@@ -3,7 +3,7 @@ import { Utils } from "../src/utilities/utilities.js";
 import { Tag } from "../node_modules/@browser-modules/web.component/lib/enums/enum.tag.js"
 import { Pin } from "../src/button.pin.js";
 
-import { Attribute, Visible, State } from "../src/button.pin.metadata.js"
+import { Attribute, Visible, State } from "../src/button.metadata.js"
 import { template } from "../src/templates/button.pin.template.js"
 
 describe('Given Pin imported', () => {
