@@ -2,62 +2,80 @@
 * @module Pin
 */
 
-import { Machine, IConfiguration } from "./machine.js";
+import { Machine, IConfiguration } from "@browser-modules/machine";
 
-import * as Pin from "./button.pin.metadata.js"
+import {
+    Attribute,
+    States,
+    Visible,
+    State,
+    Event,
+    Operation,
+    Gesture
+} from "./button.pin.metadata.js"
+
+export {
+    Attribute,
+    States,
+    Visible,
+    State,
+    Event,
+    Operation,
+    Gesture
+} from "./button.pin.metadata.js"
 
 export const Configuration: 
     IConfiguration<
-        Pin.Attribute, 
-        Pin.States, 
-        Pin.Event> = {
+        Attribute, 
+        States, 
+        Event> = {
     type:'parallel',
     states :{
-        [Pin.Attribute.VISIBLE]:{
-            initial: Pin.Visible.YES,
+        [Attribute.VISIBLE]:{
+            initial: Visible.YES,
             states: {
-                [Pin.Visible.YES]:{
+                [Visible.YES]:{
                     on:{
-                        [Pin.Event.ONHIDE]: {
-                            target: Pin.Visible.NO,
-                            actions: [Pin.Operation.HIDE]
+                        [Event.ONHIDE]: {
+                            target: Visible.NO,
+                            actions: [Operation.HIDE]
                         }
                     }
                 },
-                [Pin.Visible.NO]:{
+                [Visible.NO]:{
                     on:{
-                        [Pin.Event.ONSHOW]: {
-                            target: Pin.Visible.YES,
-                            actions: [Pin.Operation.SHOW]
+                        [Event.ONSHOW]: {
+                            target: Visible.YES,
+                            actions: [Operation.SHOW]
                         }
                     }
                 }
             }
         },
-        [Pin.Attribute.STATE]: {
-            initial: Pin.State.OFF,
+        [Attribute.STATE]: {
+            initial: State.OFF,
             states: {
-                [Pin.State.OFF]:{
+                [State.OFF]:{
                     on: {
-                        [Pin.Event.ONON]: {
-                            target: Pin.State.ON,
-                            actions:[Pin.Operation.ON]
+                        [Event.ONON]: {
+                            target: State.ON,
+                            actions:[Operation.ON]
                         },
-                        [Pin.Event.ONTOGGLE]: {
-                            target: Pin.State.ON,
-                            actions:[Pin.Operation.ON]
+                        [Event.ONTOGGLE]: {
+                            target: State.ON,
+                            actions:[Operation.ON]
                         }
                     }
                 },
-                [Pin.State.ON]:{
+                [State.ON]:{
                     on: {
-                        [Pin.Event.ONOFF]: {
-                            target: Pin.State.OFF,
-                            actions: [Pin.Operation.OFF]
+                        [Event.ONOFF]: {
+                            target: State.OFF,
+                            actions: [Operation.OFF]
                         },
-                        [Pin.Event.ONTOGGLE]: {
-                            target: Pin.State.OFF,
-                            actions: [Pin.Operation.OFF]
+                        [Event.ONTOGGLE]: {
+                            target: State.OFF,
+                            actions: [Operation.OFF]
                         }
                     }
                 }
@@ -65,27 +83,27 @@ export const Configuration:
         }
     },
     actions: {
-        [Pin.Operation.HIDE]:   (
-            machine: Machine<Pin.Attribute, Pin.States, Pin.Event>, 
+        [Operation.HIDE]:   (
+            machine: Machine<Attribute, States, Event>, 
             state) => 
-                machine.emit(Pin.Event.ONHIDE, state),
-        [Pin.Operation.SHOW]:   (
-            machine: Machine<Pin.Attribute, Pin.States, Pin.Event>,
+                machine.emit(Event.ONHIDE, state),
+        [Operation.SHOW]:   (
+            machine: Machine<Attribute, States, Event>,
             state) => 
-                machine.emit(Pin.Event.ONSHOW,state),
-        [Pin.Operation.ON]:     (
-            machine: Machine<Pin.Attribute, Pin.States, Pin.Event>,
+                machine.emit(Event.ONSHOW,state),
+        [Operation.ON]:     (
+            machine: Machine<Attribute, States, Event>,
             state) => 
-                machine.emit(Pin.Event.ONON, state),
-        [Pin.Operation.OFF]:    (
-            machine: Machine<Pin.Attribute, Pin.States, Pin.Event>,
+                machine.emit(Event.ONON, state),
+        [Operation.OFF]:    (
+            machine: Machine<Attribute, States, Event>,
             state) => 
-                machine.emit(Pin.Event.ONOFF, state)
+                machine.emit(Event.ONOFF, state)
     },
     gestures:[
         {
-            event: Pin.Gesture.CLICK,
-            operation: Pin.Operation.TOGGLE
+            event: Gesture.CLICK,
+            operation: Operation.TOGGLE
         }
     ]
 }

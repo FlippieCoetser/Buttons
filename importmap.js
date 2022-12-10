@@ -3,7 +3,9 @@ const importmap = {
         "@browser-modules/dictionary":
             "./node_modules/@browser-modules/dictionary/lib/dictionary.js",
         "@browser-modules/events":
-            "./node_modules/@browser-modules/events/lib/events.js", 
+            "./node_modules/@browser-modules/events/lib/events.js",
+        "@browser-modules/machine":
+            "./node_modules/@browser-modules/machine/lib/machine.js", 
         "@browser-modules/web.component":
             "./node_modules/@browser-modules/web.component/lib/component.js"
     },

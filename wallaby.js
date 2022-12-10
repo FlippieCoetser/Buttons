@@ -5,6 +5,7 @@ module.exports = function(wallaby) {
             "src/**/*.ts",
             "node_modules/@browser-modules/dictionary/lib/**/*.js",
             "node_modules/@browser-modules/events/lib/**/*.js",
+            "node_modules/@browser-modules/machine/lib/**/*.js",
             "node_modules/@browser-modules/web.component/lib/**/*.js",
         ],
         tests: [

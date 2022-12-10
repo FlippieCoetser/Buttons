@@ -1,19 +1,18 @@
 /**
 * @module Pin
 */
-import {
+import { Component } from "@browser-modules/web.component";
+import { Machine } from "@browser-modules/machine"
+
+import { 
+    Configuration,
     Attribute,
     States,
     Visible,
     State,
     Event,
-    Operation
-} from "./button.pin.metadata.js"
-
-import { Component } from "@browser-modules/web.component";
-import { Machine } from "./machine.js"
-
-import { Configuration } from "./button.pin.config.js"
+    Operation 
+} from "./button.pin.config.js"
 
 /**
 * Event handler signature
