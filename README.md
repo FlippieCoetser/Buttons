@@ -1,6 +1,6 @@
 # Button
 
-[API Documentation](https://flippiecoetser.github.io/Button.Pin/)
+[API Documentation](https://flippiecoetser.github.io/Buttons/)
 
 Over engineered web component button with:
 1. Declarative Interface 
