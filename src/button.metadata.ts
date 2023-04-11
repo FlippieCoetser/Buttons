@@ -1,5 +1,5 @@
 /**
-* @module Pin
+* @module Button
 */
 
 /**

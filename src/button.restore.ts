@@ -1,6 +1,3 @@
-/**
-* @module Restore
-*/
 import { Component } from "@browser-modules/web.component";
 import { Machine } from "@browser-modules/machine"
 
