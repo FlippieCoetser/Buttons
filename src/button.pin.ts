@@ -12,7 +12,7 @@ import {
     State,
     Event,
     Operation 
-} from "./button.config.js"
+} from "./Button.config.js"
 
 /**
 * Event handler signature
