@@ -13,7 +13,7 @@
         "./test/**/*"
     ],
     "typedocOptions" :{
-        "entryPoints":["./src/button.pin.ts","./src/button.config.ts","./src/button.restore.ts"],
+        "entryPoints":["./src/Button.Pin.ts","./src/Button.config.ts","./src/Button.Restore.ts"],
         "excludePrivate": true,
         "excludeProtected": true,
         "disableSources": true,
