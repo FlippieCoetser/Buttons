@@ -70,17 +70,19 @@ button-pin {
     top: 100px;
 }
 
+
+button-restore {
+    position: absolute;
+    left: 200px;
+    top: 100px;
+}
+
 button-fullscreen {
     position: absolute;
     left: 700px;
     top: 150px;
 }
 
-button-restore {
-    position: absolute;
-    left: 750px;
-    top: 150px;
-}
 
 
 bar-task {
