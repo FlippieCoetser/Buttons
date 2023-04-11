@@ -1,8 +1,8 @@
 
-import { TemplateLoader } from './templateLoader.js'
 import { Pin } from '../lib/button.pin.js'
+import { TemplateLoader } from './templateLoader.js'
 
-await TemplateLoader.load("../src/templates/button.pin.template.html")
+await TemplateLoader.load("../lib/templates/button.pin.template.html")
 console.log('button-pin template: Loaded')
 
 customElements.define(Pin.tag, Pin)
