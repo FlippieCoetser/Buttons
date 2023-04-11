@@ -1,7 +1,7 @@
 import { Utils } from "../src/utilities/utilities.js";
 
 import { Tag } from "../node_modules/@browser-modules/web.component/lib/enums/enum.tag.js"
-import { Pin } from "../src/button.pin.js";
+import { Pin } from "../src/Button.Pin.js";
 
 import { Attribute, Visible, State } from "../src/button.metadata.js"
 import { template } from "../src/templates/button.pin.template.js"

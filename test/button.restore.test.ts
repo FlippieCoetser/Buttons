@@ -1,7 +1,7 @@
 import { Utils } from "../src/utilities/utilities.js";
 
 import { Tag } from "../node_modules/@browser-modules/web.component/lib/enums/enum.tag.js"
-import { Restore } from "../src/button.restore.js";
+import { Restore } from "../src/Button.Restore.js";
 
 import { Attribute, Visible, State } from "../src/button.metadata.js"
 import { template } from "../src/templates/button.restore.template.js"
