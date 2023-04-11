@@ -10,7 +10,27 @@ Over engineered web component button with:
 
 ### Dependencies
 
-Component dependencies are managed using NPM Packages.
+```mermaid
+    graph TD;
+    A[Buttons]
+    A --> B[Utilities]
+    B --> C[html template loader]
+    A --> D[Component]
+    D --> E[main]
+    D --> F[config]
+    D --> G[metadata]
+    D --> H[style]
+    A --> I[Modules]
+    I --> L[machine]
+    I --> K[events]
+    I --> J[dictionary]
+    L --> K
+    K --> J
+```
+
+
+
+module dependencies are managed using NPM Packages.
 
 ```javascript
 {  "dependencies": {
@@ -21,7 +41,7 @@ Component dependencies are managed using NPM Packages.
   }
 }
 ```
-To enable the browser to find the components, HTML Importmaps is used:  
+To enable the browser to find the modules, HTML Importmaps is used:  
 
 ```html
 <script type="importmap">
@@ -36,16 +56,18 @@ To enable the browser to find the components, HTML Importmaps is used:
 </script>
 ```
 
-Loading external dependencies is done using the import keyword, as declared in the different modules: 
-```typescript
-// Inside Events
-import { Dictionary } from "@browser-modules/dictionary";
+The finite state machine is an optional module which enable the support of complex workflows. 
+This is a good example of how the dependency tree works.
 
+External dependencies is simply loaded using the import keyword, as declared in the different modules: 
+```typescript
 // Inside Machine
 import { Event as Emitter } from "@browser-modules/events"
+
+// Inside Events
+import { Dictionary } from "@browser-modules/dictionary";
 ```
 
-The machine is an optional modules which enable the support of complex workflows. 
 
 
 ### Running Demo
