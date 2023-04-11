@@ -13,17 +13,17 @@ Over engineered web component button with:
 ```mermaid
     graph TD;
     A[Buttons]
-    A --> B[Utilities]
-    B --> C[html template loader]
+    A --> B[Utility Service]
+    B --> C[Template loader]
     A --> D[Component]
-    D --> E[main]
-    D --> F[config]
-    D --> G[metadata]
-    D --> H[style]
+    D --> E[Declaration]
+    D --> F[Configuration]
+    D --> G[Metadata]
+    D --> H[Styling]
     A --> I[Modules]
-    I --> L[machine]
-    I --> K[events]
-    I --> J[dictionary]
+    I --> L[Machine]
+    I --> K[Events]
+    I --> J[Dictionary]
     L --> K
     K --> J
 ```
