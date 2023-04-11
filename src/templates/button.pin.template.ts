@@ -1,5 +1,5 @@
 export const template = `
-    <link rel="stylesheet" href="../lib/css/button.pin.style.css">
+    <link rel="stylesheet" href="../lib/css/Button.Pin.style.css">
     <div class="icon">
         <svg 
             class="on"

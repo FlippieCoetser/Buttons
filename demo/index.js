@@ -1,11 +1,11 @@
 
-import { Pin } from '../lib/button.pin.js'
-import { Restore } from '../lib/button.restore.js'
+import { Pin } from '../lib/Button.Pin.js'
+import { Restore } from '../lib/Button.Restore.js'
 import { TemplateLoader } from '../lib/utilities/templateLoader.js'
 
-await TemplateLoader.load("../lib/templates/button.pin.template.html")
+await TemplateLoader.load("../lib/templates/Button.Pin.template.html")
 console.log('button-pin template: Loaded')
-await TemplateLoader.load("../lib/templates/button.restore.template.html")
+await TemplateLoader.load("../lib/templates/Button.Restore.template.html")
 console.log('button-restore template: Loaded')
 
 customElements.define(Pin.tag, Pin)

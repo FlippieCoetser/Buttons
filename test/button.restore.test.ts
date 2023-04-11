@@ -3,7 +3,7 @@ import { Utils } from "../src/utilities/utilities.js";
 import { Tag } from "../node_modules/@browser-modules/web.component/lib/enums/enum.tag.js"
 import { Restore } from "../src/Button.Restore.js";
 
-import { Attribute, Visible, State } from "../src/button.metadata.js"
+import { Attribute, Visible, State } from "../src/Button.metadata.js"
 import { template } from "../src/templates/Button.Restore.template.js"
 
 describe('Given Restore imported', () => {

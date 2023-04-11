@@ -12,7 +12,7 @@ import {
     Event,
     Operation,
     Gesture
-} from "./button.metadata.js"
+} from "./Button.metadata.js"
 
 export {
     Attribute,
@@ -22,7 +22,7 @@ export {
     Event,
     Operation,
     Gesture
-} from "./button.metadata.js"
+} from "./Button.metadata.js"
 
 export const Configuration: 
     IConfiguration<
