@@ -4,7 +4,7 @@ import { Tag } from "../node_modules/@browser-modules/web.component/lib/enums/en
 import { Restore } from "../src/Button.Restore.js";
 
 import { Attribute, Visible, State } from "../src/button.metadata.js"
-import { template } from "../src/templates/button.restore.template.js"
+import { template } from "../src/templates/Button.Restore.template.js"
 
 describe('Given Restore imported', () => {
     it('Then Restore should be defined', () => {
