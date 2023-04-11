@@ -1,6 +1,6 @@
 
 import { Pin } from '../lib/button.pin.js'
-import { TemplateLoader } from './templateLoader.js'
+import { TemplateLoader } from '../lib/utilities/templateLoader.js'
 
 await TemplateLoader.load("../lib/templates/button.pin.template.html")
 console.log('button-pin template: Loaded')
