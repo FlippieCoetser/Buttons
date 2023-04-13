@@ -1,28 +1,13 @@
 /**
-* @module Button
+* It is not possible to pass information into a web component constructor.
+* This is a know limitation of web components.
+* The configuration of the web component is therefore set via a public `configuration` property.
+* @module Buttons
 */
 
 import { Machine, IConfiguration } from "@browser-modules/machine";
 
-import {
-    Attribute,
-    States,
-    Visible,
-    State,
-    Event,
-    Operation,
-    Gesture
-} from "./Button.metadata.js"
-
-export {
-    Attribute,
-    States,
-    Visible,
-    State,
-    Event,
-    Operation,
-    Gesture
-} from "./Button.metadata.js"
+import { Attribute, States, Visible, State, Event, Operation, Gesture } from "./Button.Metadata.js"
 
 export const Configuration: 
     IConfiguration<

@@ -1,5 +1,5 @@
 export class Utils {
-    static createComponent = <T>(tag, attributes?: any):T => {
+    static appendComponent = <T>(tag, attributes?: any):T => {
         const component = document.createElement(tag);
             if (attributes != null) {
                 Object.entries(attributes).forEach(attribute => {
@@ -20,7 +20,7 @@ export class Utils {
         !customElements.get(tag) && customElements.define(tag, component)
     }
 
-    static createTemplate = (id ,template?) => {
+    static appendTemplate = (id ,template?) => {
         let HTMLTemplate: HTMLTemplateElement= document.createElement("template");
         HTMLTemplate.innerHTML = template ?? ''
         HTMLTemplate.id = id;

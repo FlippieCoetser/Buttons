@@ -1,24 +1,16 @@
+/**
+* @module Buttons
+*/
+
 import { Component } from "@browser-modules/web.component";
 import { Machine } from "@browser-modules/machine"
 
-import { 
-    Configuration,
-    Attribute,
-    States,
-    Visible,
-    State,
-    Event,
-    Operation 
-} from "./Button.config.js"
+import { States, Attribute, Event, State, Visible, Handler } from "./Button.Metadata.js"
 
-/**
-* Event handler signature
-* @category Interfaces
-*/
-export type Handler = (...args: any[]) => void
+import { Configuration} from "./Button.Config.js"
 
 /**  
-* @category Component
+* @category Components
 */
 export class Pin extends Component {
     /**
@@ -27,16 +19,19 @@ export class Pin extends Component {
     static get attributes() { return Attribute}
 
     /**
-    * Contains the bindings of UI Gestures to web component operations
+    * Contains the bindings of UI Gestures and Configuration of the finite state machine.
     * @hidden
     */
     public configuration = Configuration
     public machine
     
     /**
-    * default state component
+    * Default visibility is `yes`
     */
     private _visible: Visible = Visible.YES
+    /**
+    * Default state is `off`
+    */
     private _state: State = State.OFF
 
     /**
@@ -45,48 +40,47 @@ export class Pin extends Component {
     constructor() {
         super()
         this.machine = new Machine<Attribute, States, Event>(Configuration)
-        this._registerEvents()
+        this._registerMachineEvents()
     }
 
-    private _trigger = (event: Event) => 
+    private _triggerComponentEvent = (event) => 
         this.dispatchEvent(new CustomEvent(event))
 
-    private _registerEvents = () => { 
+    private _registerMachineEvents = () => { 
         this.machine.on(Event.ONHIDE,(state) => {
             this.visible = state
-            this._trigger(Event.ONHIDE)
+            this._triggerComponentEvent(Event.ONHIDE)
         })
         this.machine.on(Event.ONSHOW,(state) => {
             this.visible = state
-            this._trigger(Event.ONSHOW)
+            this._triggerComponentEvent(Event.ONSHOW)
         })
         this.machine.on(Event.ONON, (state) => {
             this.state = state
-            this._trigger(Event.ONON)
+            this._triggerComponentEvent(Event.ONON)
         })
         this.machine.on(Event.ONOFF, (state) => {
             this.state = state
-            this._trigger(Event.ONOFF)
+            this._triggerComponentEvent(Event.ONOFF)
         })
     }
 
     /**
-    * Id of HTML Template which defaults to `.tag` when no value defined in 
+    * Id of HTML Template which defaults to `.tag` when no value defined inside component html tag. 
     * @readonly
     * @category State
     */
-    public get [Attribute.TEMPLATE]() {
-        return this.getAttribute('templateId') ?? Pin.tag;
+    public get templateId() {
+        return this.getAttribute(Attribute.TEMPLATE) ?? Pin.tag;
     }
     
-    /**
-    * No Imperative API Operation to change visibility.  
+    /**  
     * @category State
     */
-    public get [Attribute.VISIBLE](): Visible {
+    public get visible(): Visible {
         return <Visible>this.getAttribute(Attribute.VISIBLE) ?? this._visible;
     }
-    public set [Attribute.VISIBLE](visible: Visible) {
+    public set visible(visible: Visible) {
         this._visible = visible;
         visible == Visible.YES && this.removeAttribute(Attribute.VISIBLE);
         visible == Visible.NO && this.setAttribute(Attribute.VISIBLE, visible);
@@ -96,10 +90,10 @@ export class Pin extends Component {
     * Takes any value of the State enumeration related to the specific button type
     * @category State
     */
-    public get [Attribute.STATE](): State { 
+    public get state(): State { 
         return <State><unknown>this.getAttribute(Attribute.STATE) ?? this._state;
     }
-    public set [Attribute.STATE](state: State) {
+    public set state(state: State) {
         this._state = state;
         this.setAttribute(Attribute.STATE, <string><unknown>state);
     }
@@ -109,7 +103,7 @@ export class Pin extends Component {
     * @event
     * @category Events 
     */
-    public set [Event.ONHIDE](handler: Handler) {
+    public set onhide(handler: Handler) {
         this.addEventListener(Event.ONHIDE,handler);
     }
         
@@ -118,7 +112,7 @@ export class Pin extends Component {
     * @event
     * @category Events
     */
-    public set [Event.ONSHOW](handler: Handler) {
+    public set onshow(handler: Handler) {
         this.addEventListener(Event.ONSHOW,handler);
     }
 
@@ -127,7 +121,7 @@ export class Pin extends Component {
     * @event
     * @category Events 
     */
-    public set [Event.ONON](handler: Handler) {
+    public set onon(handler: Handler) {
         this.addEventListener(Event.ONON,handler);
     }
     
@@ -136,37 +130,37 @@ export class Pin extends Component {
     * @event
     * @category Events
     */
-    public set [Event.ONOFF](handler: Handler) {
+    public set onoff(handler: Handler) {
         this.addEventListener(Event.ONOFF,handler);
     }
 
     /**
     * @category Operations
     */
-    public [Operation.HIDE] = (): void => 
+    public hide = (): void => 
         this.machine.trigger(Event.ONHIDE)
 
     /**
     * @category Operations
     */
-    public [Operation.SHOW] = (): void => 
+    public show = (): void => 
         this.machine.trigger(Event.ONSHOW)
 
     /**
     * @category Operations
     */
-    public [Operation.ON] = (): void => 
+    public on = (): void => 
         this.machine.trigger(Event.ONON)
 
     /**
     * @category Operations
     */
-    public [Operation.OFF] = (): void => 
+    public off = (): void => 
         this.machine.trigger(Event.ONOFF)
     
     /**
     * @category Operations
     */
-    public [Operation.TOGGLE] = (): void =>
+    public toggle = (): void =>
         this.machine.trigger(Event.ONTOGGLE)
 }

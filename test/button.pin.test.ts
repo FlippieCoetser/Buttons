@@ -1,9 +1,10 @@
 import { Utils } from "../src/utilities/utilities.js";
 
 import { Tag } from "../node_modules/@browser-modules/web.component/lib/enums/enum.tag.js"
+
+import { Attribute, Visible, State, Operation } from "../src/Button.Metadata.js"
 import { Pin } from "../src/Button.Pin.js";
 
-import { Attribute, Visible, State } from "../src/Button.metadata.js"
 import { template } from "../src/templates/Button.Pin.template.js"
 
 describe('Given Pin imported', () => {
@@ -26,7 +27,7 @@ describe('Given Pin imported', () => {
         describe('Given HTML Template added to DOM', () => {
             let HTMLTemplate: HTMLTemplateElement
             beforeEach(() => {
-                HTMLTemplate = Utils.createTemplate(Pin.tag, template)
+                HTMLTemplate = Utils.appendTemplate(Pin.tag, template)
             })
             afterEach(() =>{
                 Utils.removeTemplate(Pin.tag)
@@ -37,7 +38,7 @@ describe('Given Pin imported', () => {
             describe('When Pin component added to DOM', () => {
                 let pin : Pin;
                 beforeEach(() => {
-                    pin = Utils.createComponent<Pin>(Pin.tag)
+                    pin = Utils.appendComponent<Pin>(Pin.tag)
                 })
                 afterEach(() => {
                     pin.remove()
@@ -45,27 +46,56 @@ describe('Given Pin imported', () => {
                 it('Then pin.templateId should be Pin.tag', () => {
                     expect(pin.templateId).toBe(Pin.tag)
                 })
-                it('Then pin.visible should be Visible.YES', () => {
-                    expect(pin.visible).toEqual(Visible.YES)
-                })
-                it('Then pin.state should be State.OFF', () => {
-                    expect(pin.state).toEqual(State.OFF)
-                })
-                describe('Given imperative API is used', () => {
-                    describe('When pin.visible set to Visible.NO', () => {
-                        beforeEach(() => {
-                            pin.visible = Visible.NO
-                        })
-                        it('Then pin.visible should be Visible.NO', () => {
-                            expect(pin.visible).toEqual(Visible.NO)
-                        })
-                        it('Then html attribute visible should be Visible.NO', () => {
-                            let visible = pin.getAttribute(Attribute.VISIBLE)
-                            expect(visible).toEqual(Visible.NO)
-                        })
-                        describe('When pin.visible set to Visible.YES', () => {
+                describe('Given state defaults have been applied', () => {
+                    it('Then pin.visible should be Visible.YES', () => {
+                        expect(pin.visible).toEqual(Visible.YES)
+                    })
+                    it('Then pin.state should be State.OFF', () => {
+                        expect(pin.state).toEqual(State.OFF)
+                    })
+                    describe('Given Imperative API used',() => {
+                        describe('When pin.hide()', () => {
+                            let onhide: jasmine.Spy
                             beforeEach(() => {
-                                pin.visible = Visible.YES
+                                onhide = jasmine.createSpy('onhide')
+                                pin.onhide = onhide
+                                pin.hide()
+                            })
+                            it('Then pin.visible should be Visible.NO', () => {
+                                expect(pin.visible).toEqual(Visible.NO)
+                            })
+                            it('Then html attribute visible should be Visible.NO', () => {
+                                let visible = pin.getAttribute(Attribute.VISIBLE)
+                                expect(visible).toEqual(Visible.NO)
+                            })
+                            it('Then onhide should have been called', () => {
+                                expect(onhide).toHaveBeenCalled()
+                            })
+                            describe('When pin.show()',() =>{
+                                let onshow: jasmine.Spy
+                                beforeEach(() =>{
+                                    onshow = jasmine.createSpy('onshow')
+                                    pin.onshow = onshow
+                                    pin.show()
+                                })
+                                it('Then pin.visible should be Visible.YES', () => {
+                                    expect(pin.visible).toEqual(Visible.YES)
+                                })
+                                it('Then html attribute visible should be null', () => {
+                                    let visible = pin.getAttribute(Attribute.VISIBLE)
+                                    expect(visible).toEqual(null)
+                                })
+                                it('Then onshow should have been called once', () => {
+                                    expect(onshow).toHaveBeenCalledTimes(1)
+                                })
+                            })
+                        })
+                        describe('When pin.show()', () => {
+                            let onshow: jasmine.Spy
+                            beforeEach(() => {
+                                onshow = jasmine.createSpy('onshow')
+                                pin.onshow = onshow
+                                pin.show()
                             })
                             it('Then pin.visible should be Visible.YES', () => {
                                 expect(pin.visible).toEqual(Visible.YES)
@@ -74,131 +104,134 @@ describe('Given Pin imported', () => {
                                 let visible = pin.getAttribute(Attribute.VISIBLE)
                                 expect(visible).toEqual(null)
                             })
+                            it('Then onshow should not have been called', () => {
+                                expect(onshow).not.toHaveBeenCalled()
+                            })
+                            describe('When pin.hide()', () => {
+                                let onhide: jasmine.Spy
+                                beforeEach(() => {
+                                    onhide = jasmine.createSpy('onhide')
+                                    pin.onhide = onhide
+                                    pin.hide()
+                                })
+                                it('Then pin.visible should be Visible.NO', () => {
+                                    expect(pin.visible).toEqual(Visible.NO)
+                                })
+                                it('Then html attribute visible should be Visible.NO', () => {
+                                    let visible = pin.getAttribute(Attribute.VISIBLE)
+                                    expect(visible).toEqual(Visible.NO)
+                                })
+                                it('Then onhide should have been called once', () => {
+                                    expect(onhide).toHaveBeenCalledTimes(1)
+                                })
+                            })
                         })
-                    })
-                    describe('Given all events has a handler registered', () => {
-                        let onon: jasmine.Spy
-                        let onoff: jasmine.Spy 
-                        beforeEach(() => {
-                            onon = jasmine.createSpy('onon') 
-                            onoff = jasmine.createSpy('onoff')
-                            pin.onon = onon
-                            pin.onoff = onoff
-                        })
-                        describe('When pin.on() is called', () => {
+                        describe('When pin.on()', () => {
+                            let onon: jasmine.Spy
                             beforeEach(() => {
+                                onon = jasmine.createSpy('onon')
+                                pin.onon = onon
                                 pin.on()
                             })
                             it('Then pin.state should be State.ON', () => {
                                 expect(pin.state).toEqual(State.ON)
                             })
-                            it('Then the onon handler should be called once', () => {
-                                expect(onon).toHaveBeenCalledTimes(1)
+                            it('Then html attribute state should be State.ON', () => {
+                                let state = pin.getAttribute(Attribute.STATE)
+                                expect(state).toEqual(State.ON)
                             })
-                            it('Then the onoff handler should not be called', () => {
-                                expect(onoff).not.toHaveBeenCalled()
+                            it('Then onon should have been called', () => {
+                                expect(onon).toHaveBeenCalled()
                             })
-                            describe('When pin.off() is called', () => {
-                                beforeEach(() =>{
+                            describe('When pin.off()', () => {
+                                let onoff: jasmine.Spy
+                                beforeEach(() => {
+                                    onoff = jasmine.createSpy('onoff')
+                                    pin.onoff = onoff
                                     pin.off()
                                 })
                                 it('Then pin.state should be State.OFF', () => {
                                     expect(pin.state).toEqual(State.OFF)
                                 })
-                                it('Then the onon handler should be called once', () => {
-                                    expect(onon).toHaveBeenCalledTimes(1)
+                                it('Then html attribute state should be State.OFF', () => {
+                                    let state = pin.getAttribute(Attribute.STATE)
+                                    expect(state).toEqual(State.OFF)
                                 })
-                                it('Then the onoff handler should be called once', () => {
+                                it('Then onoff should have been called once', () => {
                                     expect(onoff).toHaveBeenCalledTimes(1)
                                 })
                             })
                         })
-                        describe('When pin.off() is called', () => {
+                        describe('When pin.off()', () => {
+                            let onoff: jasmine.Spy
                             beforeEach(() => {
+                                onoff = jasmine.createSpy('onoff')
+                                pin.onoff = onoff
                                 pin.off()
                             })
                             it('Then pin.state should be State.OFF', () => {
                                 expect(pin.state).toEqual(State.OFF)
                             })
-                            it('Then the onon handler should be called once', () => {
-                                expect(onon).not.toHaveBeenCalled()
+                            it('Then html attribute state should be null', () => {
+                                let state = pin.getAttribute(Attribute.STATE)
+                                expect(state).toEqual(null)
                             })
-                            describe('When pin.on() is called', () => {
-                                beforeEach(() => {
-                                    pin.on()
-                                })
-                                it('Then pin.state should be State.ON', () => {
-                                    expect(pin.state).toEqual(State.ON)
-                                })
-                                it('Then the onoff handler should be called once', () => {
-                                    expect(onon).toHaveBeenCalledTimes(1)
-                                })
-                            })
-                        })
-                        describe('When pin.toggle() is called', () => {
-                            beforeEach(() => {
-                                pin.toggle()
-                            })
-                            it('Then pin.state should be State.ON', () => {
-                                expect(pin.state).toEqual(State.ON)
-                            })
-                            it('Then the onon handler should be called once', () => {
-                                expect(onon).toHaveBeenCalledTimes(1)
-                            })
-                            it('Then the onoff handler should not be called', () => {
+                            it('Then onoff should not have been called', () => {
                                 expect(onoff).not.toHaveBeenCalled()
                             })
-                            describe('When pin.toggle() is called', () => {
+                            describe('When pin.on()', () => {
+                                let onon: jasmine.Spy
                                 beforeEach(() => {
-                                    pin.toggle()
+                                    onon = jasmine.createSpy('onon')
+                                    pin.onon = onon
+                                    pin.on()
                                 })
-                                it('Then pin.state should be State.OFF', () => {
-                                    expect(pin.state).toEqual(State.OFF)
+                                it('Then pin.state should be State.NO', () => {
+                                    expect(pin.state).toEqual(State.ON)
                                 })
-                                it('Then the onon handler should be called once', () => {
-                                    expect(onon).toHaveBeenCalledTimes(1)
+                                it('Then html attribute state should be State.ON', () => {
+                                    let state = pin.getAttribute(Attribute.STATE)
+                                    expect(state).toEqual(State.ON)
                                 })
-                                it('Then the onoff handler should be called once', () => {
-                                    expect(onoff).toHaveBeenCalledTimes(1)
+                                it('Then onoff should not have been called', () => {
+                                    expect(onoff).toHaveBeenCalledTimes(0)
                                 })
                             })
                         })
                     })
-                })
-                describe('Given User Gestures is used', () => {
-                    describe('Given all events has a handler registered', () => {
-                        let onon: jasmine.Spy
-                        let onoff: jasmine.Spy
-                        beforeEach(() =>{
-                            onon = jasmine.createSpy('onon')
-                            onoff = jasmine.createSpy('onoff')
-                            pin.onon = onon
-                            pin.onoff = onoff
-                        })
-                        describe('When pin clicked', () => {
-                            beforeEach(() =>{
-                                pin.click()
+                    describe('Given User Gestures used', () => {
+                        describe('When click with mouse', () => {
+                            let onon: jasmine.Spy
+                            beforeEach(() => {
+                                onon = jasmine.createSpy('onon')
+                                pin.onon = onon
+                                pin.dispatchEvent(new MouseEvent('click'))
                             })
                             it('Then pin.state should be State.ON', () => {
                                 expect(pin.state).toEqual(State.ON)
                             })
-                            it('Then the onon handler should be called once', () => {
+                            it('Then html attribute state should be State.ON', () => {
+                                let state = pin.getAttribute(Attribute.STATE)
+                                expect(state).toEqual(State.ON)
+                            })
+                            it('Then onon should have been called once', () => {
                                 expect(onon).toHaveBeenCalledTimes(1)
                             })
-                            it('Then the onoff handler should not be called', () => {
-                                expect(onoff).not.toHaveBeenCalled()
-                            })
-                            describe('When pin clicked', () => {
-                                beforeEach(() =>{
-                                    pin.click()
+                            describe('When click with mouse', () => {
+                                let onoff: jasmine.Spy
+                                beforeEach(() => {
+                                    onoff = jasmine.createSpy('onoff')
+                                    pin.onoff = onoff
+                                    pin.dispatchEvent(new MouseEvent('click'))
                                 })
                                 it('Then pin.state should be State.OFF', () => {
                                     expect(pin.state).toEqual(State.OFF)
                                 })
-                                it('Then the onon handler should be called once', () => {
-                                    expect(onon).toHaveBeenCalledTimes(1)
+                                it('Then html attribute state should be State.OFF', () => {
+                                    let state = pin.getAttribute(Attribute.STATE)
+                                    expect(state).toEqual(State.OFF)
                                 })
-                                it('Then the onoff handler should be called once', () => {
+                                it('Then onoff should have been called once', () => {
                                     expect(onoff).toHaveBeenCalledTimes(1)
                                 })
                             })

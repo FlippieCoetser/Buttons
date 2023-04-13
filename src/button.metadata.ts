@@ -1,5 +1,5 @@
 /**
-* @module Button
+* @module Buttons
 */
 
 /**
@@ -8,8 +8,8 @@
  */
 export enum Attribute {
     TEMPLATE = 'templateId',
-    VISIBLE = 'visible',
-    STATE = 'state'
+    VISIBLE  = 'visible',
+    STATE    = 'state'
 }
 
 /**
@@ -17,7 +17,7 @@ export enum Attribute {
  * @category Metadata: State
  */
 export enum Visible {
-    NO = 'no',
+    NO  = 'no',
     YES = 'yes'
 }
 
@@ -25,7 +25,7 @@ export enum Visible {
 * @category Metadata: State
 */
 export enum State {
-    ON = 'on',
+    ON  = 'on',
     OFF = 'off'
 }
 
@@ -38,27 +38,32 @@ export type States = State | Visible
 * @category Metadata: Behavior
 */
 export enum Event {
-    ONHIDE = 'onhide',
-    ONSHOW = 'onshow', 
-    ONON = 'onon', 
-    ONOFF = 'onoff',
+    ONHIDE   = 'onhide',
+    ONSHOW   = 'onshow', 
+    ONON     = 'onon', 
+    ONOFF    = 'onoff',
     ONTOGGLE = 'ontoggle'
 }
 
 /**
 * @category Metadata: Behavior
 */
-export enum Operation {
-    ON = 'on', 
-    OFF = 'off', 
-    TOGGLE = 'toggle', 
-    SHOW = 'show',
-    HIDE = 'hide'
+export const enum Operation {
+    SHOW   = 'show',
+    HIDE   = 'hide',
+    ON     = 'on', 
+    OFF    = 'off', 
+    TOGGLE = 'toggle'
 }
 
 /**
 * @category Metadata: Behavior
 */
-export enum Gesture {
+export const enum Gesture {
     CLICK = 'click'
 }
+/**
+* Event handler signature
+* @category Interfaces
+*/
+export type Handler = (...args: any[]) => void
