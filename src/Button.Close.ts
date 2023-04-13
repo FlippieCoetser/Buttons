@@ -3,15 +3,15 @@
 */
 
 import { Component } from "@browser-modules/web.component";
-import { Machine } from "@browser-modules/machine"
 
-import { Configuration } from "./Button.switch.config.js"
-import { Attribute, States, Event, State, Visible, Handler } from "./Button.metadata.js"
+import { Attribute, Event, State, Visible, Handler } from "./Button.metadata.js"
+
+import { Configuration} from "./Button.push.config.js"
 
 /**  
 * @category Components
 */
-export class Restore extends Component {
+export class Close extends Component {
     /**
     * @category Attributes
     */
@@ -31,38 +31,17 @@ export class Restore extends Component {
     /**
     * Default state is `off`
     */
-    private _state: State = State.OFF
+    private _state: State = State.UP
 
     /**
     * @hidden
     */
     constructor() {
         super()
-        this.machine = new Machine<Attribute, States, Event>(Configuration)
-        this._registerEvents()
     }
 
-    private _trigger = (event) => 
+    private _triggerComponentEvent = (event) => 
         this.dispatchEvent(new CustomEvent(event))
-
-    private _registerEvents = () => { 
-        this.machine.on(Event.ONHIDE,(state) => {
-            this.visible = state
-            this._trigger(Event.ONHIDE)
-        })
-        this.machine.on(Event.ONSHOW,(state) => {
-            this.visible = state
-            this._trigger(Event.ONSHOW)
-        })
-        this.machine.on(Event.ONON, (state) => {
-            this.state = state
-            this._trigger(Event.ONON)
-        })
-        this.machine.on(Event.ONOFF, (state) => {
-            this.state = state
-            this._trigger(Event.ONOFF)	
-        })
-    }
 
     /**
     * Id of HTML Template which defaults to `.tag` when no value defined inside component html tag. 
@@ -70,10 +49,10 @@ export class Restore extends Component {
     * @category State
     */
     public get templateId() {
-        return this.getAttribute(Attribute.TEMPLATE) ?? Restore.tag;
+        return this.getAttribute(Attribute.TEMPLATE) ?? Close.tag;
     }
     
-    /** 
+    /**  
     * @category State
     */
     public get visible(): Visible {
@@ -116,50 +95,61 @@ export class Restore extends Component {
     }
 
     /**
-    * Triggered via `.on()`
+    * Triggered via `.press()`
     * @event
     * @category Events 
     */
-    public set onon(handler: Handler) {
-        this.addEventListener(Event.ONON,handler);
+    public set ondown(handler: Handler) {
+        this.addEventListener(Event.ONDOWN,handler);
     }
     
     /**
-    * Triggered via `.off()`
+    * Triggered via `.release()`
     * @event
     * @category Events
     */
-    public set onoff(handler: Handler) {
-        this.addEventListener(Event.ONOFF,handler);
+    public set onup(handler: Handler) {
+        this.addEventListener(Event.ONUP,handler);
     }
 
     /**
     * @category Operations
     */
-    public hide = (): void => 
-        this.machine.trigger(Event.ONHIDE)
+    public hide = (): void => {
+        if (this.visible !== Visible.NO) {
+            this.visible = Visible.NO
+            this._triggerComponentEvent(Event.ONHIDE)
+        }
+    }
+        
 
     /**
     * @category Operations
     */
-    public show = (): void => 
-        this.machine.trigger(Event.ONSHOW)
+    public show = (): void => {
+        if (this.visible !== Visible.YES) {
+            this.visible = Visible.YES
+            this._triggerComponentEvent(Event.ONSHOW)
+        }
+    }
 
     /**
     * @category Operations
     */
-    public on = (): void => 
-        this.machine.trigger(Event.ONON)
+    public press = (): void => {
+        if (this.state !== State.DOWN) {
+            this.state = State.DOWN
+            this._triggerComponentEvent(Event.ONDOWN)
+        }
+    }
 
     /**
     * @category Operations
     */
-    public off = (): void => 
-        this.machine.trigger(Event.ONOFF)
-    
-    /**
-    * @category Operations
-    */
-    public toggle = (): void =>
-        this.machine.trigger(Event.ONTOGGLE)
+    public release = (): void => {
+        if (this.state !== State.UP) {
+            this.state = State.UP
+            this._triggerComponentEvent(Event.ONUP)
+        }
+    }
 }

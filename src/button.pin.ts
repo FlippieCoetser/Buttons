@@ -7,7 +7,7 @@ import { Machine } from "@browser-modules/machine"
 
 import { States, Attribute, Event, State, Visible, Handler } from "./Button.metadata.js"
 
-import { Configuration} from "./Button.config.js"
+import { Configuration} from "./Button.switch.config.js"
 
 /**  
 * @category Components

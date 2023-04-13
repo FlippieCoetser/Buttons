@@ -14,7 +14,7 @@ describe('Given Pin imported', () => {
     it('Then Pin.tag should be Tag.Pin', () => {
         expect(Pin.tag).toBe(Tag.Pin)
     })
-    it('Then Pin.attribute should be Attribute', () => {
+    it('Then Pin.attributes should be Attribute', () => {
         expect(Pin.attributes).toBe(Attribute)
     })
     describe('Given Pin defined', () => {

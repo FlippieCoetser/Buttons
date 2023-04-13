@@ -26,7 +26,9 @@ export enum Visible {
 */
 export enum State {
     ON  = 'on',
-    OFF = 'off'
+    OFF = 'off',
+    DOWN = 'down',
+    UP = 'up'
 }
 
 /**
@@ -42,7 +44,9 @@ export enum Event {
     ONSHOW   = 'onshow', 
     ONON     = 'onon', 
     ONOFF    = 'onoff',
-    ONTOGGLE = 'ontoggle'
+    ONTOGGLE = 'ontoggle',
+    ONDOWN = 'ondown',
+    ONUP = 'onup'
 }
 
 /**
@@ -53,14 +57,20 @@ export const enum Operation {
     HIDE   = 'hide',
     ON     = 'on', 
     OFF    = 'off', 
-    TOGGLE = 'toggle'
+    TOGGLE = 'toggle',
+    PRESS = 'press',
+    RELEASE = 'release',
 }
 
 /**
 * @category Metadata: Behavior
 */
 export const enum Gesture {
-    CLICK = 'click'
+    CLICK = 'click',
+    MOUSEDOWN = 'mousedown',
+    MOUSEUP = 'mouseup',
+    TOUCHSTART = 'touchstart',
+    TOUCHEND = 'touchend',
 }
 /**
 * Event handler signature
