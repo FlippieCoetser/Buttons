@@ -4,56 +4,52 @@ html {
 }
 
 
-
-
 button-maximize {
     position: absolute;
     left: 200px;
-    top: 150px;
+    top: 100px;
 }
-
-
 
 button-down {
     position: absolute;
     left: 300px;
-    top: 150px;
+    top: 100px;
 }
 
 button-up {
     position: absolute;
     left: 350px;
-    top: 150px;
+    top: 100px;
 }
 
 button-left {
     position: absolute;
     left: 400px;
-    top: 150px;
+    top: 100px;
 }
 
 button-right {
     position: absolute;
     left: 450px;
-    top: 150px;
+    top: 100px;
 }
 
 button-dots {
     position: absolute;
     left: 500px;
-    top: 150px;
+    top: 100px;
 }
 
 button-hamburger {
     position: absolute;
     left: 550px;
-    top: 150px;
+    top: 100px;
 }
 
 button-contents {
     position: absolute;
     left: 600px;
-    top: 150px;
+    top: 100px;
 }
 
 button-pin {
