@@ -5,8 +5,8 @@
 import { Component } from "@browser-modules/web.component";
 import { Machine } from "@browser-modules/machine"
 
-import { Configuration } from "./Button.Config.js"
-import { Attribute, States, Event, State, Visible, Handler } from "./Button.Metadata.js"
+import { Configuration } from "./Button.config.js"
+import { Attribute, States, Event, State, Visible, Handler } from "./Button.metadata.js"
 
 /**  
 * @category Components

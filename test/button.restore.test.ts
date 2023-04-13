@@ -2,7 +2,7 @@ import { Utils } from "../src/utilities/utilities.js";
 
 import { Tag } from "../node_modules/@browser-modules/web.component/lib/enums/enum.tag.js"
 
-import { Attribute, Visible, State, Operation } from "../src/Button.Metadata.js"
+import { Attribute, Visible, State, Operation } from "../src/Button.metadata.js"
 import { Restore } from "../src/Button.Restore.js";
 
 import { template } from "../src/templates/Button.Restore.template.js"

@@ -7,7 +7,7 @@
 
 import { Machine, IConfiguration } from "@browser-modules/machine";
 
-import { Attribute, States, Visible, State, Event, Operation, Gesture } from "./Button.Metadata.js"
+import { Attribute, States, Visible, State, Event, Operation, Gesture } from "./Button.metadata.js"
 
 export const Configuration: 
     IConfiguration<
