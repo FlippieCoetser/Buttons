@@ -4,11 +4,7 @@ html {
 }
 
 
-button-minimize {
-    position: absolute;
-    left: 150px;
-    top: 150px;
-}
+
 
 button-maximize {
     position: absolute;
@@ -66,6 +62,11 @@ button-pin {
     top: 100px;
 }
 
+button-minimize {
+    position: absolute;
+    left: 150px;
+    top: 100px;
+}
 
 button-restore {
     position: absolute;
