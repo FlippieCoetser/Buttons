@@ -9,6 +9,9 @@ import { Right    } from '../lib/Button.Right.js'
 import { Up       } from '../lib/Button.Up.js'
 import { Down     } from '../lib/Button.Down.js'
 import { Dots     } from '../lib/Button.Dots.js'
+import { Hamburger} from '../lib/Button.Hamburger.js'
+import { Contents } from '../lib/Button.Contents.js'
+import { Fullscreen} from '../lib/Button.Fullscreen.js' 
 
 import { TemplateLoader } from '../lib/utilities/templateLoader.js'
 
@@ -22,6 +25,9 @@ await TemplateLoader.load("../lib/templates/Button.Right.template.html")
 await TemplateLoader.load("../lib/templates/Button.Up.template.html")
 await TemplateLoader.load("../lib/templates/Button.Down.template.html")
 await TemplateLoader.load("../lib/templates/Button.Dots.template.html")
+await TemplateLoader.load("../lib/templates/Button.Hamburger.template.html")
+await TemplateLoader.load("../lib/templates/Button.Contents.template.html")
+await TemplateLoader.load("../lib/templates/Button.Fullscreen.template.html")
 console.log('templates: Loaded')
 
 customElements.define(Pin.tag, Pin)
@@ -34,6 +40,9 @@ customElements.define(Right.tag, Right)
 customElements.define(Up.tag, Up)
 customElements.define(Down.tag, Down)
 customElements.define(Dots.tag, Dots)
+customElements.define(Hamburger.tag, Hamburger)
+customElements.define(Contents.tag, Contents)
+customElements.define(Fullscreen.tag, Fullscreen)
 
 // Load Imperative Interface
 window.pin = document.querySelector('button-pin')
@@ -46,4 +55,7 @@ window.right = document.querySelector('button-right')
 window.up = document.querySelector('button-up')
 window.down = document.querySelector('button-down')
 window.dots = document.querySelector('button-dots')
+window.hamburger = document.querySelector('button-hamburger')
+window.contents = document.querySelector('button-contents')
+window.fullscreen = document.querySelector('button-fullscreen')
 console.log('Buttons: Loaded')

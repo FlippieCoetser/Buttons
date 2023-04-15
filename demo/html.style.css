@@ -3,88 +3,83 @@ html {
     /* background-image: linear-gradient(to top,rgb(55, 170, 180), rgb(9, 79, 116)) */
 }
 
-button-pin {
+button-hamburger {
+    position: absolute;
+    left: 50px;
+    top: 200px;
+}
+
+button-restore {
     position: absolute;
     left: 100px;
-    top: 100px;
+    top: 200px;
+}
+
+button-fullscreen {
+    position: absolute;
+    left: 150px;
+    top: 200px;
+}
+
+button-pin {
+    position: absolute;
+    left: 200px;
+    top: 200px;
+}
+
+button-contents {
+    position: absolute;
+    left: 250px;
+    top: 200px;
 }
 
 button-minimize {
     position: absolute;
-    left: 150px;
+    left: 50px;
     top: 100px;
 }
 
 button-maximize {
     position: absolute;
-    left: 200px;
+    left: 100px;
     top: 100px;
 }
 
-
 button-close {
     position: absolute;
-    left: 250px;
+    left: 150px;
     top: 100px;
 }
 
 button-down {
     position: absolute;
-    left: 300px;
+    left: 200px;
     top: 100px;
 }
 
 button-up {
     position: absolute;
-    left: 350px;
+    left: 250px;
     top: 100px;
 }
 
 button-left {
     position: absolute;
-    left: 400px;
+    left: 300px;
     top: 100px;
 }
 
 button-right {
     position: absolute;
-    left: 450px;
+    left: 350px;
     top: 100px;
 }
 
 button-dots {
     position: absolute;
-    left: 500px;
+    left: 400px;
     top: 100px;
 }
-
-button-hamburger {
-    position: absolute;
-    left: 550px;
-    top: 100px;
-}
-
-button-contents {
-    position: absolute;
-    left: 600px;
-    top: 100px;
-}
-
-
-
-button-restore {
-    position: absolute;
-    left: 600px;
-    top: 100px;
-}
-
-
-button-fullscreen {
-    position: absolute;
-    left: 700px;
-    top: 150px;
-}
-
 
 
 bar-task {
