@@ -71,6 +71,7 @@ export const enum Gesture {
     MOUSEUP = 'mouseup',
     TOUCHSTART = 'touchstart',
     TOUCHEND = 'touchend',
+    MOUSELEAVE = 'mouseleave'
 }
 /**
 * Event handler signature
