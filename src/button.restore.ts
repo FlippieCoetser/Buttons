@@ -5,8 +5,9 @@
 import { Component } from "@browser-modules/web.component";
 import { Machine } from "@browser-modules/machine"
 
-import { Configuration } from "./Button.switch.config.js"
-import { Attribute, States, Event, State, Visible, Handler } from "./Button.metadata.js"
+import { States, Attribute, Event, State, Visible, Handler } from "./Button.metadata.js"
+
+import { Configuration} from "./Button.switch.config.js"
 
 /**  
 * @category Components
@@ -39,28 +40,28 @@ export class Restore extends Component {
     constructor() {
         super()
         this.machine = new Machine<Attribute, States, Event>(Configuration)
-        this._registerEvents()
+        this._registerMachineEvents()
     }
 
-    private _trigger = (event) => 
-        this.dispatchEvent(new CustomEvent(event))
+    private _emitCustomEvent   = (event, data) => 
+        this.dispatchEvent(new CustomEvent(event,{detail:data}))
 
-    private _registerEvents = () => { 
-        this.machine.on(Event.ONHIDE,(state) => {
-            this.visible = state
-            this._trigger(Event.ONHIDE)
+    private _registerMachineEvents = () => { 
+        this.machine.on(Event.ONHIDE,(visible) => {
+            this.visible = visible
+            this._emitCustomEvent(Event.ONHIDE, { visible: visible })
         })
-        this.machine.on(Event.ONSHOW,(state) => {
-            this.visible = state
-            this._trigger(Event.ONSHOW)
+        this.machine.on(Event.ONSHOW,(visible) => {
+            this.visible = visible
+            this._emitCustomEvent(Event.ONSHOW, { visible: visible })
         })
         this.machine.on(Event.ONON, (state) => {
             this.state = state
-            this._trigger(Event.ONON)
+            this._emitCustomEvent(Event.ONON, { state: state })
         })
         this.machine.on(Event.ONOFF, (state) => {
             this.state = state
-            this._trigger(Event.ONOFF)	
+            this._emitCustomEvent(Event.ONOFF, { state: state })
         })
     }
 
@@ -73,7 +74,7 @@ export class Restore extends Component {
         return this.getAttribute(Attribute.TEMPLATE) ?? Restore.tag;
     }
     
-    /** 
+    /**  
     * @category State
     */
     public get visible(): Visible {
@@ -136,30 +137,30 @@ export class Restore extends Component {
     /**
     * @category Operations
     */
-    public hide = (): void => 
+    public hide = (): boolean => 
         this.machine.trigger(Event.ONHIDE)
 
     /**
     * @category Operations
     */
-    public show = (): void => 
+    public show = (): boolean => 
         this.machine.trigger(Event.ONSHOW)
 
     /**
     * @category Operations
     */
-    public on = (): void => 
+    public on = (): boolean => 
         this.machine.trigger(Event.ONON)
 
     /**
     * @category Operations
     */
-    public off = (): void => 
+    public off = (): boolean => 
         this.machine.trigger(Event.ONOFF)
     
     /**
     * @category Operations
     */
-    public toggle = (): void =>
+    public toggle = (): boolean =>
         this.machine.trigger(Event.ONTOGGLE)
 }

@@ -40,8 +40,8 @@ export class Right extends Component {
         super()
     }
 
-    private _triggerComponentEvent = (event) => 
-        this.dispatchEvent(new CustomEvent(event))
+    private _emitCustomEvent   = (event, data) => 
+        this.dispatchEvent(new CustomEvent(event,{detail:data}))
 
     /**
     * Id of HTML Template which defaults to `.tag` when no value defined inside component html tag. 
@@ -118,38 +118,43 @@ export class Right extends Component {
     public hide = (): void => {
         if (this.visible !== Visible.NO) {
             this.visible = Visible.NO
-            this._triggerComponentEvent(Event.ONHIDE)
+            this._emitCustomEvent(Event.ONHIDE, { visible: this.visible })
         }
     }
-        
 
     /**
     * @category Operations
     */
-    public show = (): void => {
+    public show = (): boolean => {
         if (this.visible !== Visible.YES) {
             this.visible = Visible.YES
-            this._triggerComponentEvent(Event.ONSHOW)
+            this._emitCustomEvent(Event.ONSHOW, { visible: this.visible })
+            return true
         }
+        return false
     }
 
     /**
     * @category Operations
     */
-    public press = (): void => {
+    public press = (): boolean => {
         if (this.state !== State.DOWN) {
             this.state = State.DOWN
-            this._triggerComponentEvent(Event.ONDOWN)
+            this._emitCustomEvent(Event.ONDOWN, { state: this.state })
+            return true
         }
+        return false
     }
 
     /**
     * @category Operations
     */
-    public release = (): void => {
+    public release = (): boolean => {
         if (this.state !== State.UP) {
             this.state = State.UP
-            this._triggerComponentEvent(Event.ONUP)
+            this._emitCustomEvent(Event.ONUP, { state: this.state })
+            return true
         }
+        return false
     }
 }
