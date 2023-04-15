@@ -56,10 +56,12 @@ describe('Given Pin imported', () => {
                     describe('Given Imperative API used',() => {
                         describe('When pin.hide()', () => {
                             let onhide: jasmine.Spy
+                            let event: CustomEvent
                             beforeEach(() => {
                                 onhide = jasmine.createSpy('onhide')
                                 pin.onhide = onhide
                                 pin.hide()
+                                event = onhide.calls.mostRecent().args[0]
                             })
                             it('Then pin.visible should be Visible.NO', () => {
                                 expect(pin.visible).toEqual(Visible.NO)
@@ -71,12 +73,17 @@ describe('Given Pin imported', () => {
                             it('Then onhide should have been called', () => {
                                 expect(onhide).toHaveBeenCalled()
                             })
+                            it('Then onhide custom event should have been called with ...args', () => {
+                                expect(event.detail).toEqual({visible: Visible.NO})
+                            })
                             describe('When pin.show()',() =>{
                                 let onshow: jasmine.Spy
+                                let event: CustomEvent
                                 beforeEach(() =>{
                                     onshow = jasmine.createSpy('onshow')
                                     pin.onshow = onshow
                                     pin.show()
+                                    event = onshow.calls.mostRecent().args[0]
                                 })
                                 it('Then pin.visible should be Visible.YES', () => {
                                     expect(pin.visible).toEqual(Visible.YES)
@@ -88,6 +95,9 @@ describe('Given Pin imported', () => {
                                 it('Then onshow should have been called once', () => {
                                     expect(onshow).toHaveBeenCalledTimes(1)
                                 })
+                                it('Then onhide custom event should have been called with ...args', () => {
+                                    expect(event.detail).toEqual({visible: Visible.YES})
+                                })
                             })
                         })
                         describe('When pin.show()', () => {
@@ -96,6 +106,7 @@ describe('Given Pin imported', () => {
                                 onshow = jasmine.createSpy('onshow')
                                 pin.onshow = onshow
                                 pin.show()
+                                
                             })
                             it('Then pin.visible should be Visible.YES', () => {
                                 expect(pin.visible).toEqual(Visible.YES)
@@ -109,10 +120,12 @@ describe('Given Pin imported', () => {
                             })
                             describe('When pin.hide()', () => {
                                 let onhide: jasmine.Spy
+                                let event: CustomEvent
                                 beforeEach(() => {
                                     onhide = jasmine.createSpy('onhide')
                                     pin.onhide = onhide
                                     pin.hide()
+                                    event = onhide.calls.mostRecent().args[0]
                                 })
                                 it('Then pin.visible should be Visible.NO', () => {
                                     expect(pin.visible).toEqual(Visible.NO)
@@ -124,14 +137,19 @@ describe('Given Pin imported', () => {
                                 it('Then onhide should have been called once', () => {
                                     expect(onhide).toHaveBeenCalledTimes(1)
                                 })
+                                it('Then onhide custom event should have been called with ...args', () => {
+                                    expect(event.detail).toEqual({visible: Visible.NO})
+                                })
                             })
                         })
                         describe('When pin.on()', () => {
                             let onon: jasmine.Spy
+                            let event: CustomEvent
                             beforeEach(() => {
                                 onon = jasmine.createSpy('onon')
                                 pin.onon = onon
                                 pin.on()
+                                event = onon.calls.mostRecent().args[0]
                             })
                             it('Then pin.state should be State.ON', () => {
                                 expect(pin.state).toEqual(State.ON)
@@ -143,12 +161,17 @@ describe('Given Pin imported', () => {
                             it('Then onon should have been called', () => {
                                 expect(onon).toHaveBeenCalled()
                             })
+                            it('Then onon custom event should have been called with ...args', () => {
+                                expect(event.detail).toEqual({state: State.ON})
+                            })
                             describe('When pin.off()', () => {
                                 let onoff: jasmine.Spy
+                                let event: CustomEvent
                                 beforeEach(() => {
                                     onoff = jasmine.createSpy('onoff')
                                     pin.onoff = onoff
                                     pin.off()
+                                    event = onoff.calls.mostRecent().args[0]
                                 })
                                 it('Then pin.state should be State.OFF', () => {
                                     expect(pin.state).toEqual(State.OFF)
@@ -159,6 +182,9 @@ describe('Given Pin imported', () => {
                                 })
                                 it('Then onoff should have been called once', () => {
                                     expect(onoff).toHaveBeenCalledTimes(1)
+                                })
+                                it('Then onoff custom event should have been called with ...args', () => {
+                                    expect(event.detail).toEqual({state: State.OFF})
                                 })
                             })
                         })
@@ -181,10 +207,12 @@ describe('Given Pin imported', () => {
                             })
                             describe('When pin.on()', () => {
                                 let onon: jasmine.Spy
+                                let event: CustomEvent
                                 beforeEach(() => {
                                     onon = jasmine.createSpy('onon')
                                     pin.onon = onon
                                     pin.on()
+                                    event = onon.calls.mostRecent().args[0]
                                 })
                                 it('Then pin.state should be State.NO', () => {
                                     expect(pin.state).toEqual(State.ON)
@@ -195,6 +223,9 @@ describe('Given Pin imported', () => {
                                 })
                                 it('Then onoff should not have been called', () => {
                                     expect(onoff).toHaveBeenCalledTimes(0)
+                                })
+                                it('Then onon custom event should have been called with ...args', () => {
+                                    expect(event.detail).toEqual({state: State.ON})
                                 })
                             })
                         })

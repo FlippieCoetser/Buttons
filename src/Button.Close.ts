@@ -40,9 +40,6 @@ export class Close extends Component {
         super()
     }
 
-    private _triggerComponentEvent = (event) => 
-        this.dispatchEvent(new CustomEvent(event))
-
     /**
     * Id of HTML Template which defaults to `.tag` when no value defined inside component html tag. 
     * @readonly
@@ -112,16 +109,19 @@ export class Close extends Component {
         this.addEventListener(Event.ONUP,handler);
     }
 
+            
+    private _triggerComponentEvent = (event, ...args) => 
+    this.dispatchEvent(new CustomEvent(event, {detail: args}))
+
     /**
     * @category Operations
     */
     public hide = (): void => {
         if (this.visible !== Visible.NO) {
             this.visible = Visible.NO
-            this._triggerComponentEvent(Event.ONHIDE)
+            this.dispatchEvent(new CustomEvent(Event.ONHIDE, {detail:{ visible: this.visible }}))
         }
     }
-        
 
     /**
     * @category Operations
@@ -129,7 +129,8 @@ export class Close extends Component {
     public show = (): void => {
         if (this.visible !== Visible.YES) {
             this.visible = Visible.YES
-            this._triggerComponentEvent(Event.ONSHOW)
+            let detail = { visible: this.visible }
+            this._triggerComponentEvent(Event.ONSHOW, detail)
         }
     }
 
@@ -139,7 +140,7 @@ export class Close extends Component {
     public press = (): void => {
         if (this.state !== State.DOWN) {
             this.state = State.DOWN
-            this._triggerComponentEvent(Event.ONDOWN)
+            this._triggerComponentEvent(Event.ONDOWN, { state: this.state })
         }
     }
 

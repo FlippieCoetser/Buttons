@@ -56,10 +56,12 @@ describe('Given Close imported', () => {
                     describe('Given Imperative API used',() => {
                         describe('When close.hide()', () => {
                             let onhide: jasmine.Spy
+                            let event: CustomEvent
                             beforeEach(() => {
                                 onhide = jasmine.createSpy('onhide')
                                 close.onhide = onhide
                                 close.hide()
+                                event = onhide.calls.mostRecent().args[0]
                             })
                             it('Then close.visible should be Visible.NO', () => {
                                 expect(close.visible).toEqual(Visible.NO)
@@ -70,6 +72,9 @@ describe('Given Close imported', () => {
                             })
                             it('Then onhide should have been called', () => {
                                 expect(onhide).toHaveBeenCalled()
+                            })
+                            it('Then onhide custom event should have been called with ...args ', () => {
+                                expect(event.detail).toEqual({visible: Visible.NO})
                             })
                             describe('When close.show()',() =>{
                                 let onshow: jasmine.Spy

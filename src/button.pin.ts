@@ -43,25 +43,27 @@ export class Pin extends Component {
         this._registerMachineEvents()
     }
 
-    private _triggerComponentEvent = (event) => 
-        this.dispatchEvent(new CustomEvent(event))
+    private _createCustomEvent = (event, data) => new CustomEvent(event,{detail:data})
+    private _emitCustomEvent   = (event, data) => this.dispatchEvent(this._createCustomEvent(event, data))
 
     private _registerMachineEvents = () => { 
-        this.machine.on(Event.ONHIDE,(state) => {
-            this.visible = state
-            this._triggerComponentEvent(Event.ONHIDE)
+        this.machine.on(Event.ONHIDE,(visible) => {
+            this.visible = visible
+            this._emitCustomEvent(Event.ONHIDE, { visible: visible })
         })
-        this.machine.on(Event.ONSHOW,(state) => {
-            this.visible = state
-            this._triggerComponentEvent(Event.ONSHOW)
+        this.machine.on(Event.ONSHOW,(visible) => {
+            this.visible = visible
+            this._emitCustomEvent(Event.ONSHOW, { visible: visible })
         })
         this.machine.on(Event.ONON, (state) => {
             this.state = state
-            this._triggerComponentEvent(Event.ONON)
+            this._emitCustomEvent(Event.ONON, { state: state })
+            return true
         })
         this.machine.on(Event.ONOFF, (state) => {
             this.state = state
-            this._triggerComponentEvent(Event.ONOFF)
+            this._emitCustomEvent(Event.ONOFF, { state: state })
+            return true
         })
     }
 
