@@ -68,14 +68,14 @@ export const Configuration:
         }
     },
     actions: {
-        [Operation.HIDE]: (machine: Machine<Attribute, States, Event>, state) => 
-            machine.emit(Event.ONHIDE, state),
-        [Operation.SHOW]: (machine: Machine<Attribute, States, Event>, state) => 
-            machine.emit(Event.ONSHOW,state),
-        [Operation.ON]: (machine: Machine<Attribute, States, Event>, state) => 
-            machine.emit(Event.ONON, state),
-        [Operation.OFF]: (machine: Machine<Attribute, States, Event>, state) => 
-            machine.emit(Event.ONOFF, state)
+        [Operation.HIDE]: (machine: Machine<Attribute, States, Event>, state, ...args) => 
+            machine.emit(Event.ONHIDE, state, ...args),
+        [Operation.SHOW]: (machine: Machine<Attribute, States, Event>, state, ...args) => 
+            machine.emit(Event.ONSHOW,state, ...args),
+        [Operation.ON]: (machine: Machine<Attribute, States, Event>, state, ...args) => 
+            machine.emit(Event.ONON, state, ...args),
+        [Operation.OFF]: (machine: Machine<Attribute, States, Event>, state, ...args) => 
+            machine.emit(Event.ONOFF, state, ...args)
     },
     gestures:[
         {
