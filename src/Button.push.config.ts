@@ -24,6 +24,10 @@ export const Configuration = {
         {
             event: Gesture.TOUCHEND,
             operation: Operation.RELEASE
+        },
+        { 
+            event: Gesture.MOUSELEAVE,
+            operation: Operation.RELEASE
         }
     ]
 }
