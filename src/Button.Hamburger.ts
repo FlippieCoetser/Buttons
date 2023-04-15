@@ -7,7 +7,7 @@ import { Machine } from "@browser-modules/machine"
 
 import { States, Attribute, Event, State, Visible, Handler } from "./Button.metadata.js"
 
-import { Configuration} from "./Button.switch.config.js"
+import { Configuration as Switch} from "./Button.switch.config.js"
 
 /**  
 * @category Components
@@ -22,7 +22,7 @@ export class Hamburger extends Component {
     * Contains the bindings of UI Gestures and Configuration of the finite state machine.
     * @hidden
     */
-    public configuration = Configuration
+    public configuration = Switch
     public machine
     
     /**
@@ -39,7 +39,7 @@ export class Hamburger extends Component {
     */
     constructor() {
         super()
-        this.machine = new Machine<Attribute, States, Event>(Configuration)
+        this.machine = new Machine<Attribute, States, Event>(Switch)
         this._registerMachineEvents()
     }
 

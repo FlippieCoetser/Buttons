@@ -6,7 +6,7 @@ import { Component } from "@browser-modules/web.component";
 
 import { Attribute, Event, State, Visible, Handler } from "./Button.metadata.js"
 
-import { Configuration} from "./Button.push.config.js"
+import { Configuration as Push} from "./Button.push.config.js"
 
 /**  
 * @category Components
@@ -21,7 +21,7 @@ export class Left extends Component {
     * Contains the bindings of UI Gestures and Configuration of the finite state machine.
     * @hidden
     */
-    public configuration = Configuration
+    public configuration = Push
     public machine
     
     /**
