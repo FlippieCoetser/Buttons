@@ -53,6 +53,6 @@
     "@browser-modules/dictionary": "^1.0.8",
     "@browser-modules/events": "^1.1.1",
     "@browser-modules/machine": "^1.0.5",
-    "@browser-modules/web.component": "^1.0.12"
+    "@browser-modules/web.component": "^1.0.13"
   }
 }
