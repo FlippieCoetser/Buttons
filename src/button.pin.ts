@@ -43,8 +43,8 @@ export class Pin extends Component {
         this._registerMachineEvents()
     }
 
-    private _createCustomEvent = (event, data) => new CustomEvent(event,{detail:data})
-    private _emitCustomEvent   = (event, data) => this.dispatchEvent(this._createCustomEvent(event, data))
+    private _emitCustomEvent   = (event, data) => 
+        this.dispatchEvent(new CustomEvent(event,{detail:data}))
 
     private _registerMachineEvents = () => { 
         this.machine.on(Event.ONHIDE,(visible) => {
@@ -58,12 +58,10 @@ export class Pin extends Component {
         this.machine.on(Event.ONON, (state) => {
             this.state = state
             this._emitCustomEvent(Event.ONON, { state: state })
-            return true
         })
         this.machine.on(Event.ONOFF, (state) => {
             this.state = state
             this._emitCustomEvent(Event.ONOFF, { state: state })
-            return true
         })
     }
 
@@ -139,30 +137,30 @@ export class Pin extends Component {
     /**
     * @category Operations
     */
-    public hide = (): void => 
+    public hide = (): boolean => 
         this.machine.trigger(Event.ONHIDE)
 
     /**
     * @category Operations
     */
-    public show = (): void => 
+    public show = (): boolean => 
         this.machine.trigger(Event.ONSHOW)
 
     /**
     * @category Operations
     */
-    public on = (): void => 
+    public on = (): boolean => 
         this.machine.trigger(Event.ONON)
 
     /**
     * @category Operations
     */
-    public off = (): void => 
+    public off = (): boolean => 
         this.machine.trigger(Event.ONOFF)
     
     /**
     * @category Operations
     */
-    public toggle = (): void =>
+    public toggle = (): boolean =>
         this.machine.trigger(Event.ONTOGGLE)
 }
