@@ -3,10 +3,28 @@ html {
     /* background-image: linear-gradient(to top,rgb(55, 170, 180), rgb(9, 79, 116)) */
 }
 
+button-pin {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+}
+
+button-minimize {
+    position: absolute;
+    left: 150px;
+    top: 100px;
+}
 
 button-maximize {
     position: absolute;
     left: 200px;
+    top: 100px;
+}
+
+
+button-close {
+    position: absolute;
+    left: 250px;
     top: 100px;
 }
 
@@ -52,29 +70,14 @@ button-contents {
     top: 100px;
 }
 
-button-pin {
-    position: absolute;
-    left: 100px;
-    top: 100px;
-}
 
-button-minimize {
-    position: absolute;
-    left: 150px;
-    top: 100px;
-}
 
 button-restore {
     position: absolute;
-    left: 200px;
+    left: 600px;
     top: 100px;
 }
 
-button-close {
-    position: absolute;
-    left: 250px;
-    top: 100px;
-}
 
 button-fullscreen {
     position: absolute;
