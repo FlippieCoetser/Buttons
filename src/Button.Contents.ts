@@ -43,8 +43,8 @@ export class Contents extends Component {
         this._registerMachineEvents()
     }
 
-    private _emitCustomEvent   = (event, data) => 
-        this.dispatchEvent(new CustomEvent(event,{detail:data}))
+    private _emitCustomEvent   = (event, data, {preventDispatch = false} = {}) => 
+        !preventDispatch && this.dispatchEvent(new CustomEvent(event,{detail:data}))
 
     private _registerMachineEvents = () => { 
         this.machine.on(Event.ONHIDE,(visible) => {

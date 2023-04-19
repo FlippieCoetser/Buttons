@@ -40,8 +40,8 @@ export class Dots extends Component {
         super()
     }
 
-    private _emitCustomEvent   = (event, data) => 
-        this.dispatchEvent(new CustomEvent(event,{detail:data}))
+    private _emitCustomEvent   = (event, data, {preventDispatch = false} = {}) => 
+        !preventDispatch && this.dispatchEvent(new CustomEvent(event,{detail:data}))
 
     /**
     * Id of HTML Template which defaults to `.tag` when no value defined inside component html tag. 
