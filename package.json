@@ -1,10 +1,10 @@
 {
   "name": "@browser-modules/buttons",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Button Web Component using ES6 modules",
-  "browser": "lib/Button.js",
-  "main": "lib/Button.js",
-  "types": "lib/Button.d.ts",
+  "browser": "lib/Buttons.js",
+  "main": "lib/Buttons.js",
+  "types": "lib/Buttons.d.ts",
   "files": [
     "lib/",
     "tasks/"
