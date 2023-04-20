@@ -76,6 +76,24 @@ describe('Given Close imported', () => {
                             it('Then onhide custom event should have been called with ...args ', () => {
                                 expect(event.detail).toEqual({visible: Visible.NO})
                             })
+                            describe('When close.hide()',() =>{
+                                let onhide: jasmine.Spy
+                                beforeEach(() =>{
+                                    onhide = jasmine.createSpy('onhide')
+                                    close.onhide = onhide
+                                    close.hide()
+                                })
+                                it('Then close.visible should be Visible.NO', () => {
+                                    expect(close.visible).toEqual(Visible.NO)
+                                })
+                                it('Then html attribute visible should be Visible.NO', () => {
+                                    let visible = close.getAttribute(Attribute.VISIBLE)
+                                    expect(visible).toEqual(Visible.NO)
+                                })
+                                it('Then onhide should not have been called', () => {
+                                    expect(onhide).toHaveBeenCalledTimes(0)
+                                })
+                            })
                             describe('When close.show()',() =>{
                                 let onshow: jasmine.Spy
                                 beforeEach(() =>{
@@ -146,7 +164,26 @@ describe('Given Close imported', () => {
                                 expect(state).toEqual(State.DOWN)
                             })
                             it('Then ondown should have been called', () => {
-                                expect(ondown).toHaveBeenCalled()
+                                expect(ondown).toHaveBeenCalledTimes(1)
+                            })
+                            describe('When close.press()', () => {
+                                let ondown: jasmine.Spy
+                            
+                                beforeEach(() => {
+                                    ondown = jasmine.createSpy('onon')
+                                    close.ondown = ondown
+                                    close.press()
+                                })
+                                it('Then close.state should be State.DOWN', () => {
+                                    expect(close.state).toEqual(State.DOWN)
+                                })
+                                it('Then html attribute state should be State.DOWN', () => {
+                                    let state = close.getAttribute(Attribute.STATE)
+                                    expect(state).toEqual(State.DOWN)
+                                })
+                                it('Then ondown should have been called', () => {
+                                    expect(ondown).toHaveBeenCalledTimes(0)
+                                })
                             })
                             describe('When close.release()', () => {
                                 let onup: jasmine.Spy

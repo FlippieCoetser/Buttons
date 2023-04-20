@@ -71,6 +71,24 @@ describe('Given Dots imported', () => {
                             it('Then onhide should have been called', () => {
                                 expect(onhide).toHaveBeenCalled()
                             })
+                            describe('When dots.hide()',() =>{
+                                let onhide: jasmine.Spy
+                                beforeEach(() =>{
+                                    onhide = jasmine.createSpy('onhide')
+                                    dots.onhide = onhide
+                                    dots.hide()
+                                })
+                                it('Then dots.visible should be Visible.NO', () => {
+                                    expect(dots.visible).toEqual(Visible.NO)
+                                })
+                                it('Then html attribute visible should be Visible.NO', () => {
+                                    let visible = dots.getAttribute(Attribute.VISIBLE)
+                                    expect(visible).toEqual(Visible.NO)
+                                })
+                                it('Then onhide should have been called once', () => {
+                                    expect(onhide).toHaveBeenCalledTimes(0)
+                                })
+                            })
                             describe('When dots.show()',() =>{
                                 let onshow: jasmine.Spy
                                 beforeEach(() =>{
@@ -142,6 +160,25 @@ describe('Given Dots imported', () => {
                             })
                             it('Then ondown should have been called', () => {
                                 expect(ondown).toHaveBeenCalled()
+                            })
+                            describe('When dots.press()', () => {
+                                let ondown: jasmine.Spy
+                            
+                                beforeEach(() => {
+                                    ondown = jasmine.createSpy('onon')
+                                    dots.ondown = ondown
+                                    dots.press()
+                                })
+                                it('Then dots.state should be State.DOWN', () => {
+                                    expect(dots.state).toEqual(State.DOWN)
+                                })
+                                it('Then html attribute state should be State.DOWN', () => {
+                                    let state = dots.getAttribute(Attribute.STATE)
+                                    expect(state).toEqual(State.DOWN)
+                                })
+                                it('Then ondown should have been called', () => {
+                                    expect(ondown).toHaveBeenCalledTimes(0)
+                                })
                             })
                             describe('When dots.release()', () => {
                                 let onup: jasmine.Spy

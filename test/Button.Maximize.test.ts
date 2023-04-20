@@ -71,6 +71,24 @@ describe('Given Maximize imported', () => {
                             it('Then onhide should have been called', () => {
                                 expect(onhide).toHaveBeenCalled()
                             })
+                            describe('When maximize.hide()',() =>{
+                                let onhide: jasmine.Spy
+                                beforeEach(() =>{
+                                    onhide = jasmine.createSpy('onhide')
+                                    maximize.onhide = onhide
+                                    maximize.hide()
+                                })
+                                it('Then maximize.visible should be Visible.NO', () => {
+                                    expect(maximize.visible).toEqual(Visible.NO)
+                                })
+                                it('Then html attribute visible should be null', () => {
+                                    let visible = maximize.getAttribute(Attribute.VISIBLE)
+                                    expect(visible).toEqual(Visible.NO)
+                                })
+                                it('Then onhide should have been called once', () => {
+                                    expect(onhide).toHaveBeenCalledTimes(0)
+                                })
+                            })
                             describe('When maximize.show()',() =>{
                                 let onshow: jasmine.Spy
                                 beforeEach(() =>{
@@ -142,6 +160,25 @@ describe('Given Maximize imported', () => {
                             })
                             it('Then ondown should have been called', () => {
                                 expect(ondown).toHaveBeenCalled()
+                            })
+                            describe('When maximize.press()', () => {
+                                let ondown: jasmine.Spy
+                            
+                                beforeEach(() => {
+                                    ondown = jasmine.createSpy('onon')
+                                    maximize.ondown = ondown
+                                    maximize.press()
+                                })
+                                it('Then maximize.state should be State.DOWN', () => {
+                                    expect(maximize.state).toEqual(State.DOWN)
+                                })
+                                it('Then html attribute state should be State.DOWN', () => {
+                                    let state = maximize.getAttribute(Attribute.STATE)
+                                    expect(state).toEqual(State.DOWN)
+                                })
+                                it('Then ondown should have been called', () => {
+                                    expect(ondown).toHaveBeenCalledTimes(0)
+                                })
                             })
                             describe('When maximize.release()', () => {
                                 let onup: jasmine.Spy

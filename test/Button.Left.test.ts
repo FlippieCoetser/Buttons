@@ -36,53 +36,71 @@ describe('Given Left imported', () => {
                 expect(document.getElementsByTagName('template')).toHaveSize(1)
             })
             describe('When Left component added to DOM', () => {
-                let close : Left;
+                let left : Left;
                 beforeEach(() => {
-                    close = Utils.appendComponent<Left>(Left.tag)
+                    left = Utils.appendComponent<Left>(Left.tag)
                 })
                 afterEach(() => {
-                    close.remove()
+                    left.remove()
                 })
-                it('Then close.templateId should be Left.tag', () => {
-                    expect(close.templateId).toBe(Left.tag)
+                it('Then left.templateId should be Left.tag', () => {
+                    expect(left.templateId).toBe(Left.tag)
                 })
                 describe('Given state defaults have been applied', () => {
-                    it('Then close.visible should be Visible.YES', () => {
-                        expect(close.visible).toEqual(Visible.YES)
+                    it('Then left.visible should be Visible.YES', () => {
+                        expect(left.visible).toEqual(Visible.YES)
                     })
-                    it('Then close.state should be State.UP', () => {
-                        expect(close.state).toEqual(State.UP)
+                    it('Then left.state should be State.UP', () => {
+                        expect(left.state).toEqual(State.UP)
                     })
                     describe('Given Imperative API used',() => {
-                        describe('When close.hide()', () => {
+                        describe('When left.hide()', () => {
                             let onhide: jasmine.Spy
                             beforeEach(() => {
                                 onhide = jasmine.createSpy('onhide')
-                                close.onhide = onhide
-                                close.hide()
+                                left.onhide = onhide
+                                left.hide()
                             })
-                            it('Then close.visible should be Visible.NO', () => {
-                                expect(close.visible).toEqual(Visible.NO)
+                            it('Then left.visible should be Visible.NO', () => {
+                                expect(left.visible).toEqual(Visible.NO)
                             })
                             it('Then html attribute visible should be Visible.NO', () => {
-                                let visible = close.getAttribute(Attribute.VISIBLE)
+                                let visible = left.getAttribute(Attribute.VISIBLE)
                                 expect(visible).toEqual(Visible.NO)
                             })
                             it('Then onhide should have been called', () => {
                                 expect(onhide).toHaveBeenCalled()
                             })
-                            describe('When close.show()',() =>{
+                            describe('When left.hide()',() =>{
+                                let onhide: jasmine.Spy
+                                beforeEach(() =>{
+                                    onhide = jasmine.createSpy('onhide')
+                                    left.onhide = onhide
+                                    left.hide()
+                                })
+                                it('Then left.visible should be Visible.NO', () => {
+                                    expect(left.visible).toEqual(Visible.NO)
+                                })
+                                it('Then html attribute visible should be null', () => {
+                                    let visible = left.getAttribute(Attribute.VISIBLE)
+                                    expect(visible).toEqual(Visible.NO)
+                                })
+                                it('Then onhide should have been called once', () => {
+                                    expect(onhide).toHaveBeenCalledTimes(0)
+                                })
+                            })
+                            describe('When left.show()',() =>{
                                 let onshow: jasmine.Spy
                                 beforeEach(() =>{
                                     onshow = jasmine.createSpy('onshow')
-                                    close.onshow = onshow
-                                    close.show()
+                                    left.onshow = onshow
+                                    left.show()
                                 })
-                                it('Then close.visible should be Visible.YES', () => {
-                                    expect(close.visible).toEqual(Visible.YES)
+                                it('Then left.visible should be Visible.YES', () => {
+                                    expect(left.visible).toEqual(Visible.YES)
                                 })
                                 it('Then html attribute visible should be null', () => {
-                                    let visible = close.getAttribute(Attribute.VISIBLE)
+                                    let visible = left.getAttribute(Attribute.VISIBLE)
                                     expect(visible).toEqual(null)
                                 })
                                 it('Then onshow should have been called once', () => {
@@ -90,35 +108,35 @@ describe('Given Left imported', () => {
                                 })
                             })
                         })
-                        describe('When close.show()', () => {
+                        describe('When left.show()', () => {
                             let onshow: jasmine.Spy
                             beforeEach(() => {
                                 onshow = jasmine.createSpy('onshow')
-                                close.onshow = onshow
-                                close.show()
+                                left.onshow = onshow
+                                left.show()
                             })
-                            it('Then close.visible should be Visible.YES', () => {
-                                expect(close.visible).toEqual(Visible.YES)
+                            it('Then left.visible should be Visible.YES', () => {
+                                expect(left.visible).toEqual(Visible.YES)
                             })
                             it('Then html attribute visible should be null', () => {
-                                let visible = close.getAttribute(Attribute.VISIBLE)
+                                let visible = left.getAttribute(Attribute.VISIBLE)
                                 expect(visible).toEqual(null)
                             })
                             it('Then onshow should not have been called', () => {
                                 expect(onshow).not.toHaveBeenCalled()
                             })
-                            describe('When close.hide()', () => {
+                            describe('When left.hide()', () => {
                                 let onhide: jasmine.Spy
                                 beforeEach(() => {
                                     onhide = jasmine.createSpy('onhide')
-                                    close.onhide = onhide
-                                    close.hide()
+                                    left.onhide = onhide
+                                    left.hide()
                                 })
-                                it('Then close.visible should be Visible.NO', () => {
-                                    expect(close.visible).toEqual(Visible.NO)
+                                it('Then left.visible should be Visible.NO', () => {
+                                    expect(left.visible).toEqual(Visible.NO)
                                 })
                                 it('Then html attribute visible should be Visible.NO', () => {
-                                    let visible = close.getAttribute(Attribute.VISIBLE)
+                                    let visible = left.getAttribute(Attribute.VISIBLE)
                                     expect(visible).toEqual(Visible.NO)
                                 })
                                 it('Then onhide should have been called once', () => {
@@ -126,35 +144,54 @@ describe('Given Left imported', () => {
                                 })
                             })
                         })
-                        describe('When close.press()', () => {
+                        describe('When left.press()', () => {
                             let ondown: jasmine.Spy
                             beforeEach(() => {
                                 ondown = jasmine.createSpy('onon')
-                                close.ondown = ondown
-                                close.press()
+                                left.ondown = ondown
+                                left.press()
                             })
-                            it('Then close.state should be State.DOWN', () => {
-                                expect(close.state).toEqual(State.DOWN)
+                            it('Then left.state should be State.DOWN', () => {
+                                expect(left.state).toEqual(State.DOWN)
                             })
                             it('Then html attribute state should be State.DOWN', () => {
-                                let state = close.getAttribute(Attribute.STATE)
+                                let state = left.getAttribute(Attribute.STATE)
                                 expect(state).toEqual(State.DOWN)
                             })
                             it('Then ondown should have been called', () => {
                                 expect(ondown).toHaveBeenCalled()
                             })
-                            describe('When close.release()', () => {
+                            describe('When left.press()', () => {
+                                let ondown: jasmine.Spy
+                            
+                                beforeEach(() => {
+                                    ondown = jasmine.createSpy('onon')
+                                    left.ondown = ondown
+                                    left.press()
+                                })
+                                it('Then left.state should be State.DOWN', () => {
+                                    expect(left.state).toEqual(State.DOWN)
+                                })
+                                it('Then html attribute state should be State.DOWN', () => {
+                                    let state = left.getAttribute(Attribute.STATE)
+                                    expect(state).toEqual(State.DOWN)
+                                })
+                                it('Then ondown should have been called', () => {
+                                    expect(ondown).toHaveBeenCalledTimes(0)
+                                })
+                            })
+                            describe('When left.release()', () => {
                                 let onup: jasmine.Spy
                                 beforeEach(() => {
                                     onup = jasmine.createSpy('onup')
-                                    close.onup = onup
-                                    close.release()
+                                    left.onup = onup
+                                    left.release()
                                 })
-                                it('Then close.state should be State.UP', () => {
-                                    expect(close.state).toEqual(State.UP)
+                                it('Then left.state should be State.UP', () => {
+                                    expect(left.state).toEqual(State.UP)
                                 })
                                 it('Then html attribute state should be State.UP', () => {
-                                    let state = close.getAttribute(Attribute.STATE)
+                                    let state = left.getAttribute(Attribute.STATE)
                                     expect(state).toEqual(State.UP)
                                 })
                                 it('Then onup should have been called once', () => {
@@ -162,35 +199,35 @@ describe('Given Left imported', () => {
                                 })
                             })
                         })
-                        describe('When close.release()', () => {
+                        describe('When left.release()', () => {
                             let onup: jasmine.Spy
                             beforeEach(() => {
                                 onup = jasmine.createSpy('onup')
-                                close.onup = onup
-                                close.release()
+                                left.onup = onup
+                                left.release()
                             })
-                            it('Then close.state should be State.UP', () => {
-                                expect(close.state).toEqual(State.UP)
+                            it('Then left.state should be State.UP', () => {
+                                expect(left.state).toEqual(State.UP)
                             })
                             it('Then html attribute state should be null', () => {
-                                let state = close.getAttribute(Attribute.STATE)
+                                let state = left.getAttribute(Attribute.STATE)
                                 expect(state).toEqual(null)
                             })
                             it('Then onup should not have been called', () => {
                                 expect(onup).not.toHaveBeenCalled()
                             })
-                            describe('When close.press()', () => {
+                            describe('When left.press()', () => {
                                 let ondown: jasmine.Spy
                                 beforeEach(() => {
                                     ondown = jasmine.createSpy('ondown')
-                                    close.ondown = ondown
-                                    close.press()
+                                    left.ondown = ondown
+                                    left.press()
                                 })
-                                it('Then close.state should be State.DOWN', () => {
-                                    expect(close.state).toEqual(State.DOWN)
+                                it('Then left.state should be State.DOWN', () => {
+                                    expect(left.state).toEqual(State.DOWN)
                                 })
                                 it('Then html attribute state should be State.DOWN', () => {
-                                    let state = close.getAttribute(Attribute.STATE)
+                                    let state = left.getAttribute(Attribute.STATE)
                                     expect(state).toEqual(State.DOWN)
                                 })
                                 it('Then ondown should not have been called', () => {
@@ -204,14 +241,14 @@ describe('Given Left imported', () => {
                             let ondown: jasmine.Spy
                             beforeEach(() => {
                                 ondown = jasmine.createSpy('ondown')
-                                close.ondown = ondown
-                                close.dispatchEvent(new MouseEvent('mousedown'))
+                                left.ondown = ondown
+                                left.dispatchEvent(new MouseEvent('mousedown'))
                             })
-                            it('Then close.state should be State.DOWN)', () => {
-                                expect(close.state).toEqual(State.DOWN)
+                            it('Then left.state should be State.DOWN)', () => {
+                                expect(left.state).toEqual(State.DOWN)
                             })
                             it('Then html attribute state should be State.DOWN', () => {
-                                let state = close.getAttribute(Attribute.STATE)
+                                let state = left.getAttribute(Attribute.STATE)
                                 expect(state).toEqual(State.DOWN)
                             })
                             it('Then ondown should have been called once', () => {
@@ -221,14 +258,14 @@ describe('Given Left imported', () => {
                                 let onup: jasmine.Spy
                                 beforeEach(() => {
                                     onup = jasmine.createSpy('onup')
-                                    close.onup = onup
-                                    close.dispatchEvent(new MouseEvent('mouseup'))
+                                    left.onup = onup
+                                    left.dispatchEvent(new MouseEvent('mouseup'))
                                 })
-                                it('Then close.state should be State.UP', () => {
-                                    expect(close.state).toEqual(State.UP)
+                                it('Then left.state should be State.UP', () => {
+                                    expect(left.state).toEqual(State.UP)
                                 })
                                 it('Then html attribute state should be State.UP', () => {
-                                    let state = close.getAttribute(Attribute.STATE)
+                                    let state = left.getAttribute(Attribute.STATE)
                                     expect(state).toEqual(State.UP)
                                 })
                                 it('Then onup should have been called once', () => {
@@ -240,14 +277,14 @@ describe('Given Left imported', () => {
                             let ondown: jasmine.Spy
                             beforeEach(() => {
                                 ondown = jasmine.createSpy('ondown')
-                                close.ondown = ondown
-                                close.dispatchEvent(new TouchEvent('touchstart'))
+                                left.ondown = ondown
+                                left.dispatchEvent(new TouchEvent('touchstart'))
                             })
-                            it('Then close.state should be State.DOWN)', () => {
-                                expect(close.state).toEqual(State.DOWN)
+                            it('Then left.state should be State.DOWN)', () => {
+                                expect(left.state).toEqual(State.DOWN)
                             })
                             it('Then html attribute state should be State.DOWN', () => {
-                                let state = close.getAttribute(Attribute.STATE)
+                                let state = left.getAttribute(Attribute.STATE)
                                 expect(state).toEqual(State.DOWN)
                             })
                             it('Then ondown should have been called once', () => {
@@ -257,14 +294,14 @@ describe('Given Left imported', () => {
                                 let onup: jasmine.Spy
                                 beforeEach(() => {
                                     onup = jasmine.createSpy('onup')
-                                    close.onup = onup
-                                    close.dispatchEvent(new TouchEvent('touchend'))
+                                    left.onup = onup
+                                    left.dispatchEvent(new TouchEvent('touchend'))
                                 })
-                                it('Then close.state should be State.UP', () => {
-                                    expect(close.state).toEqual(State.UP)
+                                it('Then left.state should be State.UP', () => {
+                                    expect(left.state).toEqual(State.UP)
                                 })
                                 it('Then html attribute state should be State.UP', () => {
-                                    let state = close.getAttribute(Attribute.STATE)
+                                    let state = left.getAttribute(Attribute.STATE)
                                     expect(state).toEqual(State.UP)
                                 })
                                 it('Then onup should have been called once', () => {

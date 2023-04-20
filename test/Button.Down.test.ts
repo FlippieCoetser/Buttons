@@ -71,6 +71,24 @@ describe('Given Down imported', () => {
                             it('Then onhide should have been called', () => {
                                 expect(onhide).toHaveBeenCalled()
                             })
+                            describe('When down.hide()',() =>{
+                                let onhide: jasmine.Spy
+                                beforeEach(() =>{
+                                    onhide = jasmine.createSpy('onhide')
+                                    down.onhide = onhide
+                                    down.hide()
+                                })
+                                it('Then down.visible should be Visible.NO', () => {
+                                    expect(down.visible).toEqual(Visible.NO)
+                                })
+                                it('Then html attribute visible should be Visible.NO', () => {
+                                    let visible = down.getAttribute(Attribute.VISIBLE)
+                                    expect(visible).toEqual(Visible.NO)
+                                })
+                                it('Then onhide should have been called once', () => {
+                                    expect(onhide).toHaveBeenCalledTimes(0)
+                                })
+                            })
                             describe('When down.show()',() =>{
                                 let onshow: jasmine.Spy
                                 beforeEach(() =>{
@@ -142,6 +160,24 @@ describe('Given Down imported', () => {
                             })
                             it('Then ondown should have been called', () => {
                                 expect(ondown).toHaveBeenCalled()
+                            })
+                            describe('When down.press()', () => {
+                                let ondown: jasmine.Spy
+                                beforeEach(() => {
+                                    ondown = jasmine.createSpy('onon')
+                                    down.ondown = ondown
+                                    down.press()
+                                })
+                                it('Then down.state should be State.DOWN', () => {
+                                    expect(down.state).toEqual(State.DOWN)
+                                })
+                                it('Then html attribute state should be State.DOWN', () => {
+                                    let state = down.getAttribute(Attribute.STATE)
+                                    expect(state).toEqual(State.DOWN)
+                                })
+                                it('Then ondown should have been called', () => {
+                                    expect(ondown).toHaveBeenCalledTimes(0)
+                                })
                             })
                             describe('When down.release()', () => {
                                 let onup: jasmine.Spy

@@ -115,11 +115,13 @@ export class Down extends Component {
     /**
     * @category Operations
     */
-    public hide = (): void => {
+    public hide = (): boolean => {
         if (this.visible !== Visible.NO) {
             this.visible = Visible.NO
             this._emitCustomEvent(Event.ONHIDE, { visible: this.visible })
+            return true
         }
+        return false
     }
 
     /**
