@@ -1,28 +1,22 @@
 {
-    "_comments": "ES2020 adds support for dynamic imports and import.meta",
-    "compilerOptions": {
-        "module": "es2022",
-        "target": "es2022",
-        "moduleResolution": "node",
-        "sourceMap": true,
-        "inlineSources": true,
-        "baseUrl": "."
-    },
-    "include": [
-        "./src/**/*",
-        "./test/**/*"
-    ],
-    "typedocOptions" :{
-        "entryPoints":[
-            "./src/Buttons.ts",
-            "./src/Button.metadata.ts"],
-        "excludePrivate": true,
-        "excludeProtected": true,
-        "disableSources": true,
-        "categorizeByGroup": false,
-        "sort": ["static-first", "visibility"],
-        "name" : "ES Module",
-        "hideGenerator": true,
-        "mergeModulesMergeMode": "module"
-    }
+  "_comments": "ES2020 adds support for dynamic imports and import.meta",
+  "compilerOptions": {
+    "module": "es2022",
+    "target": "es2022",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "inlineSources": true,
+    "baseUrl": "."
+  },
+  "include": ["./src/**/*", "./test/**/*"],
+  "typedocOptions": {
+    "entryPoints": ["./src/Buttons.ts", "./src/Button.metadata.ts"],
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "disableSources": true,
+    "categorizeByGroup": false,
+    "sort": ["static-first", "visibility"],
+    "name": "ES Module",
+    "hideGenerator": true
+  }
 }

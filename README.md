@@ -1,6 +1,6 @@
 # Button
 
-[API Documentation](https://flippiecoetser.github.io/Buttons/modules.html)
+[API Documentation](https://flippiecoetser.github.io/Buttons/index.html)
 
 Over engineered web component button with:
 
