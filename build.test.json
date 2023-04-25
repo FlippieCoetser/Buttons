@@ -16,7 +16,7 @@
     "disableSources": true,
     "categorizeByGroup": false,
     "sort": ["static-first", "visibility"],
-    "name": "ES Module",
+    "name": "Web Components",
     "hideGenerator": true
   }
 }

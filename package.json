@@ -1,6 +1,6 @@
 {
   "name": "@browser-modules/buttons",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Button Web Component using ES6 modules",
   "browser": "lib/Buttons.js",
   "main": "lib/Buttons.js",
@@ -48,9 +48,10 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@browser-modules/component.library": "^1.0.9",
     "@browser-modules/dictionary": "^1.0.8",
     "@browser-modules/events": "^1.1.1",
-    "@browser-modules/machine": "^1.0.5",
+    "@browser-modules/machine": "^1.0.8",
     "@browser-modules/web.component": "^1.0.13"
   }
 }
