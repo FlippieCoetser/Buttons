@@ -10,7 +10,7 @@
   },
   "include": ["./src/**/*", "./test/**/*"],
   "typedocOptions": {
-    "entryPoints": ["./src/Buttons.ts", "./src/Button.metadata.ts"],
+    "entryPoints": ["./src/Buttons.ts"],
     "excludePrivate": true,
     "excludeProtected": true,
     "disableSources": true,

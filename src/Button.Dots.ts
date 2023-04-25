@@ -26,9 +26,12 @@ export class Dots extends Component {
 
   /**
    * Contains the bindings of UI Gestures and Configuration of the finite state machine.
-   * @hidden
    */
   public configuration = Configuration;
+  /**
+   * finite state machine.
+   * @hidden
+   */
   public machine;
 
   /**

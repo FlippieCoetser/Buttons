@@ -3,9 +3,9 @@
  */
 
 // Metadata
-import { Attribute, Attributes } from "./button.metadata.js";
+import { Attribute } from "./button.metadata.js";
 import { State, States } from "./button.metadata.js";
-import { Event, Events } from "./button.metadata.js";
+import { Event } from "./button.metadata.js";
 import { Visible, Visibility } from "./button.metadata.js";
 import { Handler } from "./button.metadata.js";
 
@@ -26,9 +26,12 @@ export class Left extends Component {
 
   /**
    * Contains the bindings of UI Gestures and Configuration of the finite state machine.
-   * @hidden
    */
   public configuration = Configuration;
+  /**
+   * finite state machine.
+   * @hidden
+   */
   public machine;
 
   /**

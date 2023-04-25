@@ -3,7 +3,7 @@
  */
 
 // Metadata
-import { Attribute } from "./button.metadata.js";
+import { Attribute, Attributes } from "./button.metadata.js";
 import { State, States } from "./button.metadata.js";
 import { Event } from "./button.metadata.js";
 import { Visible, Visibility } from "./button.metadata.js";
