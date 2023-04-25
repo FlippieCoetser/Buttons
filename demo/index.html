@@ -1,35 +1,39 @@
 <!doctype html>
 <html>
-    <head>
-        <title>ES Module Template</title>
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <link rel="stylesheet" href="html.style.css">
-        <script type="importmap">
+
+<head>
+  <title>ES Module Template</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="html.style.css">
+  <script type="importmap">
             {
                 "imports": {
                     "@browser-modules/dictionary": "../node_modules/@browser-modules/dictionary/lib/dictionary.js",
                     "@browser-modules/events": "../node_modules/@browser-modules/events/lib/events.js",
+                    "@browser-modules/component.library": "../node_modules/@browser-modules/component.library/lib/library.js",	
                     "@browser-modules/machine": "../node_modules/@browser-modules/machine/lib/machine.js",
                     "@browser-modules/web.component": "../node_modules/@browser-modules/web.component/lib/component.js",
-                    "@browser-modules/buttons": "../node_modules/@browser-modules/buttons/lib/Buttons.js"
+                    "@browser-modules/buttons": "../node_modules/@browser-modules/buttons/lib/buttons.js"
                 }
             }
         </script>
-    </head>
-    <body>
-        <script src="index.js" type="module"></script>
-        <button-pin></button-pin>
-        <button-restore></button-restore>
-        <button-close></button-close>
-        <button-minimize></button-minimize>
-        <button-maximize></button-maximize>
-        <button-left></button-left>
-        <button-right></button-right>
-        <button-up></button-up>
-        <button-down></button-down>
-        <button-dots></button-dots>
-        <button-contents></button-contents>
-        <button-fullscreen></button-fullscreen>
-        <button-hamburger></button-hamburger>
-    </body>
+</head>
+
+<body>
+  <script src="index.js" type="module"></script>
+  <button-pin></button-pin>
+  <button-restore></button-restore>
+  <button-close></button-close>
+  <button-minimize></button-minimize>
+  <button-maximize></button-maximize>
+  <button-left></button-left>
+  <button-right></button-right>
+  <button-up></button-up>
+  <button-down></button-down>
+  <button-dots></button-dots>
+  <button-contents></button-contents>
+  <button-fullscreen></button-fullscreen>
+  <button-hamburger></button-hamburger>
+</body>
+
 </html>
