@@ -2,9 +2,9 @@
   "name": "@browser-modules/buttons",
   "version": "1.0.7",
   "description": "Button Web Component using ES6 modules",
-  "browser": "lib/Buttons.js",
-  "main": "lib/Buttons.js",
-  "types": "lib/Buttons.d.ts",
+  "browser": "lib/buttons.js",
+  "main": "lib/buttons.js",
+  "types": "lib/buttons.d.ts",
   "files": [
     "lib/",
     "tasks/"
